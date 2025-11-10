@@ -1,0 +1,9 @@
+#include<iostream>
+int i =0;
+int main(){
+for(int j =0 ;i <12;){
+	std::cout<<"hello world";
+	i++;
+	std::cout<< "value of i is :" << i ;
+
+}
