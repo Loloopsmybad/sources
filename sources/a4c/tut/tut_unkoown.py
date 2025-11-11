@@ -23,6 +23,6 @@ def palindrme(arr,cut):
 
     return m,cut
     
-stri = input("nig")
+stri = input("nigger")
 cut=0
 palindrme(stri)
