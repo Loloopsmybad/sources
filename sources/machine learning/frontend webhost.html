@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML Model Deployment Platform</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 900px;
+            width: 100%;
+            padding: 40px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 20px;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        input[type="text"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+        
+        input[type="text"]:focus,
+        input[type="number"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .input-group {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        
+        button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f0f0f0;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #e0e0e0;
+        }
+        
+        .results {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 20px;
+            margin-top: 30px;
+            display: none;
+        }
+        
+        .results.show {
+            display: block;
+        }
+        
+        .result-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+        
+        .result-label {
+            color: #666;
+            font-size: 12px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+        
+        .result-value {
+            color: #333;
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .alert {
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 14px;
+            display: none;
+        }
+        
+        .alert.show {
+            display: block;
+        }
+        
+        .alert-error {
+            background: #fee;
+            color: #c33;
+            border: 1px solid #fcc;
+        }
+        
+        .alert-success {
+            background: #efe;
+            color: #3c3;
+            border: 1px solid #cfc;
+        }
+        
+        @media (max-width: 600px) {
+            .input-group {
+                grid-template-columns: 1fr;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ML Model Deployment</h1>
+            <p class="subtitle">Enterprise-grade prediction platform</p>
+        </header>
+        
+        <div id="alert" class="alert"></div>
+        
+        <form id="predictionForm">
+            <div class="form-section">
+                <label for="modelSelect">Select Model</label>
+                <select id="modelSelect" required>
+                    <option value="">Choose a model...</option>
+                    <option value="classification">Classification Model</option>
+                    <option value="regression">Regression Model</option>
+                    <option value="clustering">Clustering Model</option>
+                </select>
+            </div>
+            
+            <div class="form-section">
+                <label>Input Features</label>
+                <div class="input-group">
+                    <div>
+                        <label for="feature1" style="margin-bottom: 4px;">Feature 1</label>
+                        <input type="number" id="feature1" step="any" placeholder="Enter value" required>
+                    </div>
+                    <div>
+                        <label for="feature2" style="margin-bottom: 4px;">Feature 2</label>
+                        <input type="number" id="feature2" step="any" placeholder="Enter value" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <div>
+                        <label for="feature3" style="margin-bottom: 4px;">Feature 3</label>
+                        <input type="number" id="feature3" step="any" placeholder="Enter value" required>
+                    </div>
+                    <div>
+                        <label for="feature4" style="margin-bottom: 4px;">Feature 4</label>
+                        <input type="number" id="feature4" step="any" placeholder="Enter value" required>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-section">
+                <label for="notes">Additional Notes</label>
+                <textarea id="notes" placeholder="Optional: Add any additional context..."></textarea>
+            </div>
+            
+            <div class="button-group">
+                <button type="submit" class="btn-primary">Get Prediction</button>
+                <button type="reset" class="btn-secondary">Clear</button>
+            </div>
+        </form>
+        
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Processing your request...</p>
+        </div>
+        
+        <div class="results" id="results">
+            <h2 style="margin-bottom: 20px; color: #333;">Prediction Results</h2>
+            <div class="result-item">
+                <div class="result-label">Model Used</div>
+                <div class="result-value" id="resultModel">-</div>
+            </div>
+            <div class="result-item">
+                <div class="result-label">Prediction</div>
+                <div class="result-value" id="resultPrediction">-</div>
+            </div>
+            <div class="result-item">
+                <div class="result-label">Confidence</div>
+                <div class="result-value" id="resultConfidence">-</div>
+            </div>
+            <div class="result-item">
+                <div class="result-label">Processing Time</div>
+                <div class="result-value" id="resultTime">-</div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        const form = document.getElementById('predictionForm');
+        const loading = document.getElementById('loading');
+        const results = document.getElementById('results');
+        const alert = document.getElementById('alert');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const model = document.getElementById('modelSelect').value;
+            const features = [
+                parseFloat(document.getElementById('feature1').value),
+                parseFloat(document.getElementById('feature2').value),
+                parseFloat(document.getElementById('feature3').value),
+                parseFloat(document.getElementById('feature4').value)
+            ];
+            
+            loading.style.display = 'block';
+            results.classList.remove('show');
+            alert.classList.remove('show');
+            
+            const startTime = Date.now();
+            
+            try {
+                // Replace with your actual API endpoint
+                const response = await fetch('https://your-api-endpoint.com/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        model: model,
+                        features: features,
+                        timestamp: new Date().toISOString()
+                    })
+                });
+                
+                if (!response.ok) throw new Error('API request failed');
+                
+                const data = await response.json();
+                const processingTime = Date.now() - startTime;
+                
+                document.getElementById('resultModel').textContent = model;
+                document.getElementById('resultPrediction').textContent = data.prediction || 'N/A';
+                document.getElementById('resultConfidence').textContent = 
+                    (data.confidence ? (data.confidence * 100).toFixed(2) + '%' : 'N/A');
+                document.getElementById('resultTime').textContent = processingTime + ' ms';
+                
+                results.classList.add('show');
+                showAlert('Prediction successful!', 'success');
+            } catch (error) {
+                showAlert('Error: ' + error.message, 'error');
+            } finally {
+                loading.style.display = 'none';
+            }
+        });
+        
+        function showAlert(message, type) {
+            alert.textContent = message;
+            alert.className = `alert show alert-${type}`;
+            setTimeout(() => alert.classList.remove('show'), 5000);
+        }
+    </script>
+</body>
+</html>
