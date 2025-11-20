@@ -1,0 +1,26 @@
+id,station_name
+1,Botanical Garden
+2,Okhla Bird Sanctuary
+3,Kalindi Kunj
+4,Jasola Vihar Shaheen Bagh
+5,Okhla Vihar
+6,Jamia Millia Islamia
+7,Sukhdev Vihar
+8,Okhla NSIC
+9,Kalkaji Mandir
+10,Nehru Enclave
+11,Greater Kailash
+12,Chirag Delhi
+13,Panchsheel Park
+14,Hauz Khas
+15,IIT
+16,R.K.Puram
+17,Munirka
+18,Vasant Vihar
+19,Shankar Vihar
+20,Terminal 1-IGI Airport
+21,Sadar Bazar Cantonment
+22,Palam
+23,Dashrathpuri
+24,Dabri Mor - Janakpuri South
+25,Janakpuri West
