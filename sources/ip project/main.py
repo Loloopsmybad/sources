@@ -45,19 +45,13 @@ def index(current_station,destination_station,margenta,blueline_4,blueline_5,blu
                 elif blueline_4.index(current_station)>blueline_4.index(destination_station):
                     station_index=blueline_4[::-1].index(current_station)
                     destination_index=abs(blueline_4[::-1].index(destination_station)-station_index)
-
-            elif current_station in blueline_5 and destination_station in blueline_5 :
-                
-               
+            elif current_station in blueline_5 and destination_station in blueline_5 :            
                 if blueline_5.index(current_station)<blueline_5.index(destination_station):
                     station_index=blueline_5.index(current_station)
                     destination_index=blueline_5.index(destination_station)-station_index
                 elif blueline_5.index(current_station)>blueline_5.index(destination_station) :
-
                     station_index=blueline_5[::-1].index(current_station)
                     destination_index=abs(blueline_5[::-1].index(destination_station)-station_index)
-                    
-
             elif ((current_station in margenta) and (destination_station not in margenta)) or ((destination_station in margenta) and (current_station not in margenta)):
                 if current_station in margenta:
                     index_1=margenta.index(current_station)
@@ -181,7 +175,7 @@ stations_only,cmplt_info = load_stations(filename)
 margenta=stations_only[:25]#margenta
 blueline_1=stations_only[40:48]#vaishali line
 blueline_2=stations_only[24:40]#ele to akshardham
-blueline_3=stations_only[65:98]#inderpreastha to dwarka
+blueline_3=stations_only[65:99]#inderpreastha to dwarka
 blueline_4=stations_only[48:98]#main blueline from ele
 blueline_5=blueline_1+blueline_3#main blueline from vaishali
 blueline_6=blueline_1+blueline_2[::-1]
