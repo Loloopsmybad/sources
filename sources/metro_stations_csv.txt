@@ -23,7 +23,7 @@ MARGENTA,Palam,Dashrathpuri,NO,2
 MARGENTA,Dashrathpuri,Dabri Mor - Janakpuri South,NO,2
 MARGENTA,Dabri Mor - Janakpuri South,Janakpuri West,NO,2
 MARGENTA,Janakpuri West,,YES,2
-BLUE,Noida Electronic City,Noida Sector 62,YES,2
+BLUE,Noida Electronic City,Noida Sector 62,NO,2
 BLUE,Noida Sector 62,Noida Sector 59,NO,2
 BLUE,Noida Sector 59,Noida Sector 61,NO,2
 BLUE,Noida Sector 61,Noida Sector 52,NO,2
@@ -38,15 +38,16 @@ BLUE,Noida Sector 15,New Ashok Nagar,NO,2
 BLUE,New Ashok Nagar,Mayur Vihar Extension,NO,2
 BLUE,Mayur Vihar Extension,Mayur Vihar Phase-1,NO,2
 BLUE,Mayur Vihar Phase-1,,NO,2
+BLUE,Akshardham,Yamuna Bank,NO,2
 BLUE,Vaishali,Kaushambi,YES,2
 BLUE,Kaushambi,Anand Vihar,NO,2
 BLUE,Anand Vihar,Karkarduma,NO,2
 BLUE,Karkarduma,Preet Vihar,NO,2
 BLUE,Preet Vihar,Nirman Vihar,NO,2
 BLUE,Nirman Vihar,Lakshmi Nagar,NO,2
-BLUE,Lakshmi Nagar,Yamuna Bank,YES,2
+BLUE,Lakshmi Nagar,Yamuna Bank,NO,2
 BLUE,Yamuna Bank,,,
-BLUE,Noida Electronic City,Noida Sector 62,YES,2
+BLUE,Noida Electronic City,Noida Sector 62,NO,2
 BLUE,Noida Sector 62,Noida Sector 59,NO,2
 BLUE,Noida Sector 59,Noida Sector 61,NO,2
 BLUE,Noida Sector 61,Noida Sector 52,NO,2
@@ -61,8 +62,8 @@ BLUE,Noida Sector 15,New Ashok Nagar,NO,2
 BLUE,New Ashok Nagar,Mayur Vihar Extension,NO,2
 BLUE,Mayur Vihar Extension,Mayur Vihar Phase-1,NO,2
 BLUE,Mayur Vihar Phase-1,Akshardham,NO,2
-BLUE,Akshardham,Yamuna Bank,YES,2
-BLUE,Yamuna Bank,Indraprastha,NO,2
+BLUE,Akshardham,Yamuna Bank,NO,2
+BLUE,Yamuna Bank,Indraprastha,YES,2
 BLUE,Indraprastha,Supreme Court,NO,2
 BLUE,Supreme Court,Mandi House,NO,2
 BLUE,Mandi House,Barakhamba Road,NO,2
@@ -82,7 +83,7 @@ BLUE,Tagore Garden,Subhash Nagar,NO,2
 BLUE,Subhash Nagar,Tilak Nagar,NO,2
 BLUE,Tilak Nagar,Janakpuri East,NO,2
 BLUE,Janakpuri East,Janakpuri West,NO,2
-BLUE,Janakpuri West,Uttam Nagar East,NO,2
+BLUE,Janakpuri West,Uttam Nagar East,YES,2
 BLUE,Uttam Nagar East,Uttam Nagar West,NO,2
 BLUE,Uttam Nagar West,Nawada,NO,2
 BLUE,Nawada,Dwarka Mor,NO,2
@@ -95,4 +96,9 @@ BLUE,Dwarka Sector 11,Dwarka Sector 10,NO,2
 BLUE,Dwarka Sector 10,Dwarka Sector 9,NO,2
 BLUE,Dwarka Sector 9,Dwarka Sector 8,NO,2
 BLUE,Dwarka Sector 8,Dwarka Sector 21,NO,2
-BLUE,Dwarka Sector 21,,YES,
+BLUE,Dwarka Sector 21,,NO,2
+GRAY,Dwarka,Interchange,YES,2
+GRAY,Interchange,Nangli,NO,2
+GRAY,Nangli,Najafgarh,NO,2
+GRAY,Najafgarh,Dhansa Bus Stand,NO,2
+GRAY,Dhansa Bus Stand,,NO,2
