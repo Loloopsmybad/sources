@@ -69,6 +69,7 @@ No realtime delays are considered
 
 example output:
 ==================================================
+
 TRAVEL DETAILS
 ==================================================
 Current Station line: Magenta
@@ -81,7 +82,7 @@ Train Arrival Time: 18:24
 Waiting Time: 4 minutes
 Journey Time in minutes: 22
 Journey Time: 18:46
-==================================================
+
 
 
 STATION LIIST DATA FORMAT
