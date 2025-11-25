@@ -1,10 +1,17 @@
+
 how to run:
+==================================================
 Install Python 3 or above
 keep the python file and the station liist file in the same diirectory
 use 24 hrs clock while entering the current time
+<<<<<<< HEAD
 the data file metro_data.txt should be in the same folder as the python file metro.py
 
+=======
+==================================================
+>>>>>>> c3995ead2e4c2df3f538ff8fb9b79971cfbf2fcd
 Features:
+==================================================
 Identifies stations in the following line:
         Magenta Line
         Blue Line (multiple stretches: BL4, BL5, BL6)
@@ -21,11 +28,13 @@ Calculates:
     Whether interchange is required
 
 Load Stations
+==================================================
 The load_stations() function reads the file and extracts:
 station_names: a list of station names
 complete_info: full rows split as [line, station]
 
 Line Definitions
+==================================================
 The list slicing the station list into separate line lists:
 margenta
 blueline_4
@@ -34,12 +43,14 @@ blueline_6
 gray_line
 
 Station Index Calculation
+==================================================
 The index() function:
 Identifies the distance/number of stations between current & destination station
 Handles reverse-direction travel
 Handles interchange logic between lines
 
 Time Calculation
+==================================================
 The program considers:
 First train at 6:00
 Peak hours:
@@ -52,6 +63,7 @@ First train at 23:00 or 11:00 pm
 
 
 Assumptions:
+==================================================
 Travel time between all stations = 2 minutes
 there are no interchanges to gray line
 Station order in the file is correct
@@ -62,6 +74,7 @@ No realtime delays are considered
 
 example output:
 ==================================================
+
 TRAVEL DETAILS
 ==================================================
 Current Station line: Magenta
@@ -78,6 +91,7 @@ Journey Time: 18:46
 
 
 STATION LIIST DATA FORMAT
+==================================================
 EXAMPLE DATA
     STATIONLINE,CURRENT STATION,NEXT STATION GOING FROM TOP TO BOTTOM,INTERCHANGE,DISTANCE BETWEEN STATIONS
     MARGENTA,Botanical Garden,Okhla Bird Sanctuary,YES,2
