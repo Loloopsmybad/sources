@@ -36,10 +36,7 @@ def index(current_station,destination_station,margenta,blueline_4,blueline_5,blu
                     station_index=gray_line[::-1].index(current_station)
                     destination_index=abs(gray_line[::-1].index(destination_station)-station_index)
             elif current_station in blueline_4 and destination_station in blueline_4 :
-                if current_station==blueline_4[-1]and destination_station==blueline_4[0]:
-                    station_index=0
-                    destination_index=len(blueline_4)-1
-                elif blueline_4.index(current_station)<=blueline_4.index(destination_station):
+                if blueline_4.index(current_station)<=blueline_4.index(destination_station):
                     station_index=blueline_4.index(current_station)
                     destination_index=blueline_4.index(destination_station)-station_index
                 elif blueline_4.index(current_station)>blueline_4.index(destination_station):
@@ -54,86 +51,89 @@ def index(current_station,destination_station,margenta,blueline_4,blueline_5,blu
                     destination_index=abs(blueline_5[::-1].index(destination_station)-station_index)
             elif ((current_station in margenta) and (destination_station not in margenta)) or ((destination_station in margenta) and (current_station not in margenta)):
                 if current_station in margenta:
-                    index_1=margenta.index(current_station)
-                    index_2=margenta[::-1].index(current_station)
-                    if change_line_c(index_1) <= change_line_c(index_2) and abs(index_1 - margenta.index("Botanical Garden")) <= abs(index_1 - margenta.index("Janakpuri West")) :
-                        station_index=abs(index_1-margenta.index("Botanical Garden"))  
-                    elif change_line_c(index_2) > change_line_c(index_2) and abs(index_2 - margenta.index("Botanical Garden")) <= abs(index_2 - margenta.index("Janakpuri West")):
-                        station_index=abs(index_2-margenta.index("Botanical Garden"))                      
-                    elif change_line_c(index_1) <= change_line_c(index_2) and abs(index_1 - margenta.index("Botanical Garden")) >= abs(index_1 - margenta.index("Janakpuri West")) :
-                        station_index=abs(index_1-margenta.index("Janakpuri West"))                       
-                    elif change_line_c(index_2) > change_line_c(index_2) and abs(index_2 - margenta.index("Botanical Garden")) >= abs(index_2 - margenta.index("Janakpuri West")):
-                        station_index=abs(index_2-margenta.index("Janakpuri West"))
                     if destination_station in blueline_4 :
                         index_1=blueline_4.index(destination_station)
                         index_2=blueline_4[::-1].index(destination_station)
-                        if change_line_c(index_1) <= change_line_c(index_2) and abs(index_1 - blueline_4.index("Botanical Garden")) <= abs(index_1 - blueline_4.index("Janakpuri West")) :
+                        if abs(index_1 - blueline_4.index("Botanical Garden")) <= abs(index_1 - blueline_4.index("Janakpuri West")) :
+                            station_index=abs(margenta.index(current_station)-margenta.index("Botanical Garden"))
                             destination_index=abs(index_1-blueline_4.index("Botanical Garden"))+station_index-1
-                        elif change_line_c(index_2) > change_line_c(index_2) and abs(index_2 - blueline_4.index("Botanical Garden")) <= abs(index_2 - blueline_4.index("Janakpuri West")):
-                            destination_index=abs(index_2-blueline_4.index("Botanical Garden"))+station_index-1
-                        elif change_line_c(index_1) <= change_line_c(index_2) and abs(index_1 - blueline_4.index("Botanical Garden")) >= abs(index_1 - blueline_4.index("Janakpuri West")) :
-                            destination_index=abs(index_1-blueline_4.index("Janakpuri West"))+station_index-1
-                        elif change_line_c(index_2) > change_line_c(index_2) and abs(index_2 - blueline_4.index("Botanical Garden")) >= abs(index_2 - blueline_4.index("Janakpuri West")):
-                            destination_index=abs(index_2-blueline_4.index("Janakpuri West"))+station_index -1            
+                            station_index=margenta.index(current_station)
+                        else:
+                            station_index=abs(margenta.index(current_station)-margenta.index("Janakpuri West"))
+                            destination_index=abs(index_2-blueline_4.index("Janakpuri West"))+station_index-1
+                            station_index=margenta[::-1].index(current_station)          
                     elif destination_station in blueline_5 and destination_station in blueline_6:
                         index_1=blueline_5.index(destination_station)
                         index_2=blueline_5[::-1].index(destination_station)
                         index_1_1=blueline_6.index(destination_station)
                         index_2_1=blueline_6[::-1].index(destination_station)
-                        if abs(index_1_1 - blueline_6.index("Botanical Garden")) <= abs(index_1 - blueline_5.index("Janakpuri West")) :
+                        if abs(index_1_1 - blueline_6.index("Botanical Garden")) <= abs(index_1 - blueline_5.index("Janakpuri West")) or abs(index_2_1 - blueline_6[::-1].index("Botanical Garden")) <= abs(index_2 - blueline_5[::-1].index("Janakpuri West")):
+                            station_index=(margenta.index(current_station)-margenta.index("Botanical Garden"))
                             if change_line_c(index_1_1) <= change_line_c(index_2_1):
                                 destination_index=abs(index_1_1-blueline_6.index("Botanical Garden"))+station_index-1
+                                station_index=margenta.index(current_station)
                             else:
-                                destination_index=abs(index_2_1-blueline_6.index("Botanical Garden"))+station_index-1
-                        elif abs(index_1_1 - blueline_6.index("Botanical Garden")) > abs(index_1 - blueline_5.index("Janakpuri West")):
+                                destination_index=abs(index_2_1-blueline_6[::-1].index("Botanical Garden"))+station_index-1
+                                station_index=margenta[::-1].index(current_station)
+                        else:
+                            station_index=abs(margenta.index(current_station)-margenta.index("Botanical Garden"))
                             if change_line_c(index_1) <= change_line_c(index_2):
-                                destination_index=abs(index_1-blueline_5.index("Janakpuri West"))+station_index-1                        
+                                destination_index=abs(index_1-blueline_5.index("Janakpuri West"))+station_index-1   
+                                station_index=blueline_5.index(current_station)                     
                             else:
-                                destination_index=abs(index_2-blueline_5.index("Janakpuri West"))+station_index-1
+                                destination_index=abs(index_2-blueline_5[::-1].index("Janakpuri West"))+station_index-1
+                                station_index=blueline_5[::-1].index(current_station)
                 elif destination_station in margenta:
-                    index_1=margenta.index(destination_station)
-                    index_2=margenta[::-1].index(destination_station)
-                    if change_line_c(index_1) <= change_line_c(index_2) and abs(index_1 - margenta.index("Botanical Garden")) <= abs(index_1 - margenta.index("Janakpuri West")) :
-                        station_index=abs(index_1-margenta.index("Botanical Garden"))  
-                    elif change_line_c(index_2) > change_line_c(index_2) and abs(index_2 - margenta.index("Botanical Garden")) <= abs(index_2 - margenta.index("Janakpuri West")):
-                        station_index=abs(index_2-margenta.index("Botanical Garden"))                      
-                    elif change_line_c(index_1) <= change_line_c(index_2) and abs(index_1 - margenta.index("Botanical Garden")) >= abs(index_1 - margenta.index("Janakpuri West")) :
-                        station_index=abs(index_1-margenta.index("Janakpuri West"))                       
-                    elif change_line_c(index_2) > change_line_c(index_2) and abs(index_2 - margenta.index("Botanical Garden")) >= abs(index_2 - margenta.index("Janakpuri West")):
-                        station_index=abs(index_2-margenta.index("Janakpuri West"))
-                    if current_station in blueline_4 :
-                        index_1=blueline_4.index(current_station)
-                        index_2=blueline_4[::-1].index(current_station)
-                        if change_line_c(index_1) <= change_line_c(index_2) and abs(index_1 - blueline_4.index("Botanical Garden")) <= abs(index_1 - blueline_4.index("Janakpuri West")) :
+                    a,b=current_station,destination_station
+                    current_station,destination_station=destination_station,current_station
+                    if destination_station in blueline_4 :
+                        index_1=blueline_4.index(destination_station)
+                        index_2=blueline_4[::-1].index(destination_station)
+                        if abs(index_1 - blueline_4.index("Botanical Garden")) <= abs(index_1 - blueline_4.index("Janakpuri West")) :
+                            station_index=abs(margenta.index(current_station)-margenta.index("Botanical Garden"))
                             destination_index=abs(index_1-blueline_4.index("Botanical Garden"))+station_index-1
-                        elif change_line_c(index_2) > change_line_c(index_2) and abs(index_2 - blueline_4.index("Botanical Garden")) <= abs(index_2 - blueline_4.index("Janakpuri West")):
-                            destination_index=abs(index_2-blueline_4.index("Botanical Garden"))+station_index-1
-                        elif change_line_c(index_1) <= change_line_c(index_2) and abs(index_1 - blueline_4.index("Botanical Garden")) >= abs(index_1 - blueline_4.index("Janakpuri West")) :
-                            destination_index=abs(index_1-blueline_4.index("Janakpuri West"))+station_index-1
-                        elif change_line_c(index_2) > change_line_c(index_2) and abs(index_2 - blueline_4.index("Botanical Garden")) >= abs(index_2 - blueline_4.index("Janakpuri West")):
-                            destination_index=abs(index_2-blueline_4.index("Janakpuri West"))+station_index -1
-                    elif current_station in blueline_5 and current_station in blueline_6:
-                        index_1=blueline_5.index(current_station)
-                        index_2=blueline_5[::-1].index(current_station)
-                        index_1_1=blueline_6.index(current_station)
-                        index_2_1=blueline_6[::-1].index(current_station)
-                        if abs(index_1_1 - blueline_6.index("Botanical Garden")) <= abs(index_1 - blueline_5.index("Janakpuri West")) :
+                            station_index=margenta.index(current_station)
+                        else:
+                            station_index=abs(margenta.index(current_station)-margenta.index("Janakpuri West"))
+                            destination_index=abs(index_2-blueline_4.index("Janakpuri West"))+station_index-1
+                            station_index=margenta[::-1].index(current_station)          
+                    elif destination_station in blueline_5 and destination_station in blueline_6:
+                        index_1=blueline_5.index(destination_station)
+                        index_2=blueline_5[::-1].index(destination_station)
+                        index_1_1=blueline_6.index(destination_station)
+                        index_2_1=blueline_6[::-1].index(destination_station)
+                        if abs(index_1_1 - blueline_6.index("Botanical Garden")) <= abs(index_1 - blueline_5.index("Janakpuri West")) or abs(index_2_1 - blueline_6[::-1].index("Botanical Garden")) <= abs(index_2 - blueline_5[::-1].index("Janakpuri West")):
+                            station_index=(margenta.index(current_station)-margenta.index("Botanical Garden"))
                             if change_line_c(index_1_1) <= change_line_c(index_2_1):
                                 destination_index=abs(index_1_1-blueline_6.index("Botanical Garden"))+station_index-1
+                                station_index=margenta.index(current_station)
                             else:
-                                destination_index=abs(index_2_1-blueline_6.index("Botanical Garden"))+station_index-1
-                        elif abs(index_1_1 - blueline_6.index("Botanical Garden")) > abs(index_1 - blueline_5.index("Janakpuri West")):
+                                destination_index=abs(index_2_1-blueline_6[::-1].index("Botanical Garden"))+station_index-1
+                                station_index=margenta[::-1].index(current_station)
+                        else:
+                            station_index=abs(margenta.index(current_station)-margenta.index("Botanical Garden"))
                             if change_line_c(index_1) <= change_line_c(index_2):
-                                destination_index=abs(index_1-blueline_5.index("Janakpuri West"))+station_index-1
+                                destination_index=abs(index_1-blueline_5.index("Janakpuri West"))+station_index-1   
+                                station_index=blueline_5.index(current_station)                     
                             else:
-                                destination_index=abs(index_2-blueline_5.index("Janakpuri West"))+station_index-1
+                                destination_index=abs(index_2-blueline_5[::-1].index("Janakpuri West"))+station_index-1
+                                station_index=blueline_5[::-1].index(current_station)
+                    
+                      
+                    index_1=margenta.index(b)
+                    index_2=margenta[::-1].index(b)
+                    if change_line_c(index_1) < change_line_c(index_2) :
+                        station_index=abs(index_1-margenta.index("Botanical Garden"))  
+                    else:
+                        station_index=abs(index_2-margenta[::-1].index("Janakpuri West"))                     
             return station_index,destination_index
 def calculate_next_train(current_station, stations, current_time, margenta,blueline_4,blueline_5,blueline_6,destination_station,gray_line):
-        try:
+        #try:
             FIRST_TRAIN_START = "06:00"
             LAST_TRAIN_TIME="23:00"
             TRAVEL_TIME_PER_STATION = 2              
             station_index,destination_index=index(current_station,destination_station,margenta,blueline_4,blueline_5,blueline_6,gray_line)
+            print(station_index,"ff",destination_index)
             a=current_time
             current_time=current_time.split(":")
             current_minutes = int(current_time[0]) * 60 + int(current_time[1])
@@ -159,64 +159,75 @@ def calculate_next_train(current_station, stations, current_time, margenta,bluel
                         "current station": current_station,
                         "destination station": destination_station,
                         "arrival time": f"{arrival_hour}:{arrival_minute}",
+                        "next train time": f"{arrival_hour}:{arrival_minute+(1*TRAIN_INTERVAL)}, {arrival_hour}:{arrival_minute+(2*TRAIN_INTERVAL)}, {arrival_hour}:{arrival_minute+(3*TRAIN_INTERVAL)}",
                         "wait minutes": wait_time,
                         "current time": a,
                         "Journey min": train_final_time-train_arrival_time,
                         "Journey duration": f"{final_hour}:{final_minute}"
                         }              
                 train_number += 1
-        except:
-             return "error"
-print("=" * 50)
-print("TRAIN ARRIVAL CALCULATOR")
-print("=" * 50)
-filename = input("Enter the station list filename:").strip()
-stations_only,cmplt_info = load_stations(filename)
-margenta=stations_only[:25]#margenta
-blueline_1=stations_only[40:48]#vaishali line
-blueline_2=stations_only[24:40]#ele to akshardham
-blueline_3=stations_only[65:99]#inderpreastha to dwarka
-blueline_4=stations_only[48:98]#main blueline from ele
-blueline_5=blueline_1+blueline_3#main blueline from vaishali
-blueline_6=blueline_1+blueline_2[::-1]
-gray_line=stations_only[99:]
-print(gray_line)
-for i, station in enumerate(stations_only, 1):
-    if station in margenta and station in blueline_4 :
-        print(f"{i}.    station on both blue and margenta lines: {station}")
-    elif station in margenta and station in blueline_5 :
-        print(f"{i}.    station on both blue and margenta lines: {station}")
-    elif station in margenta:
-        print(f"{i}.    margenta line station: {station}")
-    elif station in gray_line:
-        print(f"{i}.    gray line station: {station}")
-    elif station in blueline_4 or blueline_5:
-        print(f"{i}.    blue line station: {station}")
-        
-print(  "=" * 50)
-current_station = input("Enter your current station name: ").strip()
-destination_station=input("Enter your destination station name: ").strip()
-current_time=input("Enter current time (kindly enter in 24 hrs format) :").strip()
-result = calculate_next_train(current_station, cmplt_info,current_time,margenta,blueline_4,blueline_5,blueline_6,destination_station,gray_line)
-print( "=" * 50)
-print("TRAVEL DETAILS")
-print("=" * 50)
-current_time=current_time.split(":")
-current_minutes = int(current_time[0]) * 60 + int(current_time[1])
-if current_minutes > 23*60:
-                print(" Metro Closed")
-else:
-    print("Current Station line: ",cmplt_info[stations_only.index(current_station)][0])
-    print("Current Station: ",result['current station'])
-    print("Destination Station line:",cmplt_info[stations_only.index(destination_station)][0])
-    print("Destination Station: ",result['destination station'])
-    if cmplt_info[stations_only.index(destination_station)][0] != cmplt_info[stations_only.index(current_station)][0] :
-        print("Interchange required")
+        #except:
+             #return "error"
+def main(): 
+    print("=" * 50)
+    print("TRAIN ARRIVAL CALCULATOR")
+    print("=" * 50)
+    filename = input("Enter the station list filename:").strip()
+    stations_only,cmplt_info = load_stations(filename)
+    margenta=stations_only[:25]#margenta
+    blueline_1=stations_only[41:49]#vaishali line
+    blueline_2=stations_only[24:41]#ele to akshardham
+    blueline_3=stations_only[65:99]#inderpreastha to dwarka
+    blueline_4=stations_only[48:98]#main blueline from ele
+    blueline_5=blueline_1+blueline_3#main blueline from vaishali
+    blueline_6=blueline_1+blueline_2[::-1]
+    gray_line=stations_only[99:]
+    print(gray_line)
+    for i, station in enumerate(stations_only, 1):
+        if station in margenta and station in blueline_4 :
+            print(f"{i}.    station on both blue and margenta lines: {station}")
+        elif station in margenta and station in blueline_5 :
+            print(f"{i}.    station on both blue and margenta lines: {station}")
+        elif station in margenta:
+            print(f"{i}.    margenta line station: {station}")
+        elif station in gray_line:
+            print(f"{i}.    gray line station: {station}")
+        elif station in blueline_4 or blueline_5:
+            print(f"{i}.    blue line station: {station}")
+    print(blueline_6)
+    print(  "=" * 50)
+    current_station = input("Enter your current station name: ").strip()
+    destination_station=input("Enter your destination station name: ").strip()
+    current_time=input("Enter current time (kindly enter in 24 hrs format) :").strip()
+    result = calculate_next_train(current_station, cmplt_info,current_time,margenta,blueline_4,blueline_5,blueline_6,destination_station,gray_line)
+    print( "=" * 50)
+    print("TRAVEL DETAILS")
+    print("=" * 50)
+    current_time=current_time.split(":")
+    current_minutes = int(current_time[0]) * 60 + int(current_time[1])
+    if current_minutes > 23*60:
+                    print(" Metro Closed")
     else:
-        print("No Interchange required")
-    print("Current Time: ",result['current time'])
-    print("Train Arrival Time: ",result['arrival time'])
-    print("Waiting Time: ",result['wait minutes'])
-    print("journey Time in minutes :",result['Journey min'])
-    print("journey Time: ",result['Journey duration'])
-print("=" * 50)
+        print("Current Station line: ",cmplt_info[stations_only.index(current_station)][0])
+        print("Current Station: ",result['current station'])
+        print("Destination Station line:",cmplt_info[stations_only.index(destination_station)][0])
+        print("Destination Station: ",result['destination station'])
+        print("Current Time: ",result['current time'])
+        print("Train Arrival Time: ",result['arrival time'])
+        print("Consecutive Train Arrival Time: ",result['next train time'])
+        ride_planner=input("do you want further comprehensive journey planner ? yes / no ").strip().upper()
+        if ride_planner=="YES":
+            print( "=" * 50)
+            print("RIDE PLANNER")
+            print("=" * 50)
+            if cmplt_info[stations_only.index(destination_station)][0] != cmplt_info[stations_only.index(current_station)][0] :
+                print("Interchange required")
+            else:
+                print("No Interchange required")
+            print("Rider can catch train from the starting station at: ",result['current station'])
+            print("Waiting Time: ",result['wait minutes'])
+            print("journey Time in minutes :",result['Journey min'])
+            print("journey Time: ",result['Journey duration'])
+        
+    print("=" * 50)
+main()
