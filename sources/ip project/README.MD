@@ -2,6 +2,7 @@ how to run:
 Install Python 3 or above
 keep the python file and the station liist file in the same diirectory
 use 24 hrs clock while entering the current time
+the data file metro_data.txt should be in the same folder as the python file metro.py
 
 Features:
 Identifies stations in the following line:
@@ -73,7 +74,7 @@ Train Arrival Time: 18:24
 Waiting Time: 4 minutes
 Journey Time in minutes: 22
 Journey Time: 18:46
-==================================================
+
 
 
 STATION LIIST DATA FORMAT
