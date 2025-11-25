@@ -4,16 +4,9 @@ how to run:
 Install Python 3 or above
 keep the python file and the station liist file in the same diirectory
 use 24 hrs clock while entering the current time
-<<<<<<< HEAD
-<<<<<<< HEAD
 the data file metro_data.txt should be in the same folder as the python file metro.py
 
-=======
-==================================================
->>>>>>> c3995ead2e4c2df3f538ff8fb9b79971cfbf2fcd
-=======
-==================================================
->>>>>>> c3995ead2e4c2df3f538ff8fb9b79971cfbf2fcd
+
 Features:
 ==================================================
 Identifies stations in the following line:
