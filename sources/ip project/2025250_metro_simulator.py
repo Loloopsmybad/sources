@@ -18,7 +18,7 @@ def change_line_c(index_1):
             FIRST_TRAIN_START=FIRST_TRAIN_START.split(":")
             per_station_delay = index_1 * TRAVEL_TIME_PER_STATION 
             return per_station_delay
-def index(current_station,destination_station,margenta,blueline_4,blueline_5,blueline_6,gray_line):
+def index(current_station,destination_station,margenta,blueline_4,blueline_5,blueline_6,gray_line,Yellow):
             station_index=0
             destination_index=1
             if current_station in margenta and destination_station in margenta :
@@ -35,6 +35,13 @@ def index(current_station,destination_station,margenta,blueline_4,blueline_5,blu
                 elif gray_line.index(current_station)>gray_line.index(destination_station) :
                     station_index=gray_line[::-1].index(current_station)
                     destination_index=abs(gray_line[::-1].index(destination_station)-station_index)
+            if current_station in Yellow and destination_station in Yellow :
+                if Yellow.index(current_station)<=Yellow.index(destination_station):
+                    station_index=Yellow.index(current_station)
+                    destination_index=Yellow.index(destination_station)-station_index
+                elif Yellow.index(current_station)>Yellow.index(destination_station) :
+                    station_index=Yellow[::-1].index(current_station)
+                    destination_index=abs(Yellow[::-1].index(destination_station)-station_index)
             elif current_station in blueline_4 and destination_station in blueline_4 :
                 if blueline_4.index(current_station)<=blueline_4.index(destination_station):
                     station_index=blueline_4.index(current_station)
@@ -127,13 +134,12 @@ def index(current_station,destination_station,margenta,blueline_4,blueline_5,blu
                     else:
                         station_index=abs(index_2-margenta[::-1].index("Janakpuri West"))                     
             return station_index,destination_index
-def calculate_next_train(current_station, stations, current_time, margenta,blueline_4,blueline_5,blueline_6,destination_station,gray_line):
+def calculate_next_train(current_station, stations, current_time, margenta,blueline_4,blueline_5,blueline_6,destination_station,gray_line,Yellow):
         #try:
             FIRST_TRAIN_START = "06:00"
             LAST_TRAIN_TIME="23:00"
-            TRAVEL_TIME_PER_STATION = 2              
-            station_index,destination_index=index(current_station,destination_station,margenta,blueline_4,blueline_5,blueline_6,gray_line)
-            print(station_index,"ff",destination_index)
+            TRAVEL_TIME_PER_STATION = 2 # + 0.33 -->  this is the train wait time at each station (20/60)
+            station_index,destination_index=index(current_station,destination_station,margenta,blueline_4,blueline_5,blueline_6,gray_line,Yellow)
             a=current_time
             current_time=current_time.split(":")
             current_minutes = int(current_time[0]) * 60 + int(current_time[1])
@@ -181,32 +187,46 @@ def main():
     blueline_4=stations_only[48:98]#main blueline from ele
     blueline_5=blueline_1+blueline_3#main blueline from vaishali
     blueline_6=blueline_1+blueline_2[::-1]
-    gray_line=stations_only[99:]
-    print(gray_line)
+    Yellow=stations_only[104:]
+    gray_line=stations_only[99:104]
     for i, station in enumerate(stations_only, 1):
         if station in margenta and station in blueline_4 :
             print(f"{i}.    station on both blue and margenta lines: {station}")
         elif station in margenta and station in blueline_5 :
             print(f"{i}.    station on both blue and margenta lines: {station}")
-        elif station in margenta:
-            print(f"{i}.    margenta line station: {station}")
+        elif station in gray_line and station in blueline_4:
+            print(f"{i}.    station on both blue and gray line station: {station}")
+        elif station in gray_line and station in blueline_5:
+            print(f"{i}.    station on both yellow and gray line station: {station}")
+        elif station in Yellow and station in blueline_5:
+            print(f"{i}.    station on both blue and yellow line station: {station}")
+        elif station in Yellow and station in blueline_4:
+            print(f"{i}.    station on both blue and yellow line station: {station}")
+        elif station in Yellow and station in margenta:
+            print(f"{i}.    station on both blue and margenta line station: {station}")
+        elif station in Yellow: 
+            print(f"{i}.    Yellow line station: {station}")
         elif station in gray_line:
             print(f"{i}.    gray line station: {station}")
+        elif station in margenta:
+            print(f"{i}.    margenta line station: {station}")
         elif station in blueline_4 or blueline_5:
             print(f"{i}.    blue line station: {station}")
-    print(blueline_6)
+        
+        
+        
     print(  "=" * 50)
     current_station = input("Enter your current station name: ").strip()
     destination_station=input("Enter your destination station name: ").strip()
     current_time=input("Enter current time (kindly enter in 24 hrs format) :").strip()
-    result = calculate_next_train(current_station, cmplt_info,current_time,margenta,blueline_4,blueline_5,blueline_6,destination_station,gray_line)
+    result = calculate_next_train(current_station, cmplt_info,current_time,margenta,blueline_4,blueline_5,blueline_6,destination_station,gray_line,Yellow)
     print( "=" * 50)
     print("TRAVEL DETAILS")
     print("=" * 50)
     current_time=current_time.split(":")
     current_minutes = int(current_time[0]) * 60 + int(current_time[1])
     if current_minutes > 23*60:
-                    print(" Metro Closed")
+                    print("No service available")
     else:
         print("Current Station line: ",cmplt_info[stations_only.index(current_station)][0])
         print("Current Station: ",result['current station'])
@@ -218,7 +238,7 @@ def main():
         ride_planner=input("do you want further comprehensive journey planner ? yes / no ").strip().upper()
         if ride_planner=="YES":
             print( "=" * 50)
-            print("RIDE PLANNER")
+            print("JourneyPlanner")
             print("=" * 50)
             if cmplt_info[stations_only.index(destination_station)][0] != cmplt_info[stations_only.index(current_station)][0] :
                 print("Interchange required")

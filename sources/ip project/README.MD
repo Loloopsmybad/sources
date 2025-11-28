@@ -4,7 +4,7 @@ how to run:
 Install Python 3 or above
 keep the python file and the station liist file in the same diirectory
 use 24 hrs clock while entering the current time
-the data file metro_data.txt should be in the same folder as the python file metro.py
+the data file metro_data.txt should be in the same folder as the python file 2025250_metro_simulator.py
 
 
 Features:
@@ -13,6 +13,7 @@ Identifies stations in the following line:
         Magenta Line
         Blue Line (multiple stretches: BL4, BL5, BL6)
         Gray Line
+        Yellow Line
 Determines:
     Current station index
     Destination station index
@@ -28,7 +29,7 @@ Load Stations
 ==================================================
 The load_stations() function reads the file and extracts:
 station_names: a list of station names
-complete_info: full rows split as [line, station]
+complete_info: full rows split as [line, station,Next Station,Interchangeably,Trainstop time at the station,timetaken for train to reach next station ]
 
 Line Definitions
 ==================================================
@@ -38,6 +39,7 @@ blueline_4
 blueline_5
 blueline_6
 gray_line
+Yellow
 
 Station Index Calculation
 ==================================================
@@ -62,9 +64,16 @@ First train at 23:00 or 11:00 pm
 Assumptions:
 ==================================================
 Travel time between all stations = 2 minutes
+Train only stops for 20 seconds 
 there are no interchanges to gray line
 Station order in the file is correct
 No realtime delays are considered
+
+
+CAUTION:
+=================================================================
+THERE IS NOT INTERCHANGABILITY FEATURE FOR GRAY AND YELLOW LINE
+
 
 
 
@@ -72,19 +81,33 @@ No realtime delays are considered
 example output:
 ==================================================
 
+==================================================
+Enter your current station name: Vaishali
+Enter your destination station name: Munirka
+Enter current time (kindly enter in 24 hrs format) :14:46
+==================================================
+
+
 TRAVEL DETAILS
 ==================================================
-Current Station line: Magenta
-Current Station: Okhla NSIC
-Destination Station line: Blue Line
-Destination Station: Rajiv Chowk
-Interchange required
-Current Time: 18:20
-Train Arrival Time: 18:24
-Waiting Time: 4 minutes
-Journey Time in minutes: 22
-Journey Time: 18:46
+Current Station line:  BLUE
+Current Station:  Vaishali
+Destination Station line: MARGENTA
+Destination Station:  Munirka
+Current Time:  14:46
+Train Arrival Time:  14:48
+Consecutive Train Arrival Time:  14:56, 14:64, 14:72
+do you want further comprehensive journey planner ? yes / no YES
+==================================================
 
+
+RIDE PLANNER
+==================================================
+Interchange required
+Rider can catch train from the starting station at:  Vaishali
+Waiting Time:  2
+journey Time in minutes : 60
+journey Time:  15:48
 
 
 STATION LIIST DATA FORMAT
