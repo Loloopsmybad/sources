@@ -1,0 +1,6 @@
+f =open ("fuckyou.txt","r")
+a=f.read(10)
+b=f.readlines()
+print(a)
+print(b)
+f.close()

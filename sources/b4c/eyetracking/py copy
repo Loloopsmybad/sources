@@ -1,0 +1,88 @@
+import cv2
+import mediapipe as mp
+from pynput.mouse import Controller
+
+# Initialize Mediapipe Face Mesh and Mouse Controller
+mp_face_mesh = mp.solutions.face_mesh
+face_mesh = mp_face_mesh.FaceMesh(refine_landmarks=True, min_detection_confidence=0.5, min_tracking_confidence=0.5)
+mouse = Controller()
+
+# Function to calculate eye center
+def calculate_eye_center(landmarks, indices, frame_width, frame_height):
+    x_coords = [landmarks[i].x * frame_width for i in indices]
+    y_coords = [landmarks[i].y * frame_height for i in indices]
+    return int(sum(x_coords) / len(x_coords)), int(sum(y_coords) / len(y_coords))
+
+# Function to map gaze movement to relative cursor movement
+def map_gaze_to_cursor(gaze_x, gaze_y, frame_width, frame_height, screen_width, screen_height):
+    center_x, center_y = frame_width // 2, frame_height // 2
+    delta_x = gaze_x - center_x
+    delta_y = gaze_y - center_y
+
+    # Scale movement to screen size
+    move_x = int(delta_x / frame_width * screen_width)
+    move_y = int(delta_y / frame_height * screen_height)
+    return move_x, move_y
+
+# Eye landmark indices for Mediapipe
+LEFT_EYE_INDICES = [362, 385, 387, 263, 373, 380]
+RIGHT_EYE_INDICES = [33, 160, 158, 133, 153, 144]
+
+# Initialize video capture
+cap = cv2.VideoCapture(0)
+
+# Initialize variables to track cursor movement
+prev_cursor_x, prev_cursor_y = 960, 540  # Start at screen center (adjust as needed)
+screen_width, screen_height = 1920, 1080  # Adjust to your screen resolution
+
+while cap.isOpened():
+    success, frame = cap.read()
+    if not success:
+        print("Failed to capture frame")
+        break
+
+    # Flip and process the frame
+    frame = cv2.flip(frame, 1)
+    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    
+    # Detect facial landmarks
+    result = face_mesh.process(rgb_frame)
+    if result.multi_face_landmarks:
+        for face_landmarks in result.multi_face_landmarks:
+            h, w, _ = frame.shape
+
+            # Calculate the center of both eyes
+            left_eye_center = calculate_eye_center(face_landmarks.landmark, LEFT_EYE_INDICES, w, h)
+            right_eye_center = calculate_eye_center(face_landmarks.landmark, RIGHT_EYE_INDICES, w, h)
+
+            # Average the eye centers to determine gaze point
+            gaze_x = (left_eye_center[0] + right_eye_center[0]) // 2
+            gaze_y = (left_eye_center[1] + right_eye_center[1]) // 2
+
+            # Map gaze movement to cursor movement
+            move_x, move_y = map_gaze_to_cursor(gaze_x, gaze_y, w, h, screen_width, screen_height)
+            new_cursor_x = prev_cursor_x + move_x
+            new_cursor_y = prev_cursor_y + move_y
+
+            # Constrain cursor within screen bounds
+            new_cursor_x = max(0, min(screen_width, new_cursor_x))
+            new_cursor_y = max(0, min(screen_height, new_cursor_y))
+
+            # Update mouse position and previous cursor position
+            mouse.position = (new_cursor_x, new_cursor_y)
+            prev_cursor_x, prev_cursor_y = new_cursor_x, new_cursor_y
+
+            # Display eye centers
+            cv2.circle(frame, left_eye_center, 3, (0, 255, 0), -1)
+            cv2.circle(frame, right_eye_center, 3, (0, 255, 0), -1)
+
+    # Display the frame
+    cv2.imshow('Eye Tracking', frame)
+
+    # Exit on 'q' key
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# Release resources
+cap.release()
+cv2.destroyAllWindows()

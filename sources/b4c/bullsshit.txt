@@ -1,0 +1,124 @@
+// C++ code
+//
+/*
+  Ping))) Sensor
+
+  This sketch reads a PING))) ultrasonic
+  rangefinder and returns the distance to the
+  closest object in range. To do this, it sends a
+  pulse to the sensor to initiate a reading, then
+  listens for a pulse to return.  The length of
+  the returning pulse is proportional to the
+  distance of the object from the sensor.
+
+  The circuit:
+   * +V connection of the PING))) attached to +5V
+   * GND connection attached to ground
+   * SIG connection attached to digital pin 7
+
+  http://www.arduino.cc/en/Tutorial/Ping
+
+  This example code is in the public domain.
+*/
+
+
+
+
+
+
+
+
+const int buttonPin1= 2;
+const int buttonPin2= 8;
+const int buttonPin3= 12;
+const int buttonPin4= 13;  // the number of the pushbutton pin
+const int ledPin_1= 11;    // the number of the LED pin
+const int ledPin_2= 10;
+const int ledPin_3= 9;
+const int ledPin_4=4;
+// variables will change:
+int buttonState1 = 0;
+int buttonState2 = 0;
+int buttonState3 = 0;
+int buttonState4 = 0;
+int inches = 0;
+
+int cm = 0;
+
+long readUltrasonicDistance(int triggerPin, int echoPin)
+{
+  pinMode(triggerPin, OUTPUT);  // Clear the trigger
+  digitalWrite(triggerPin, LOW);
+  delayMicroseconds(2);
+  // Sets the trigger pin to HIGH state for 10 microseconds
+  digitalWrite(triggerPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(triggerPin, LOW);
+  pinMode(echoPin, INPUT);
+  // Reads the echo pin, and returns the sound wave travel time in microseconds
+  return pulseIn(echoPin, HIGH);
+}
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(ledPin_1, OUTPUT);
+  pinMode(buttonPin1, INPUT);
+    pinMode(ledPin_2, OUTPUT);
+  pinMode(buttonPin2, INPUT);
+    pinMode(ledPin_3, OUTPUT);
+  pinMode(buttonPin3, INPUT);
+    pinMode(ledPin_4, OUTPUT);
+  pinMode(buttonPin4, INPUT);
+}
+
+void loop()
+  
+{
+  buttonState1 = digitalRead(buttonPin1);
+  buttonState2 = digitalRead(buttonPin2);
+  buttonState3= digitalRead(buttonPin3);
+  buttonState4= digitalRead(buttonPin4);
+  
+  if (buttonState1 == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin_1, LOW);
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin_1, HIGH);
+  }
+  
+  if (buttonState2 == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin_2, LOW);
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin_2, HIGH);
+  }
+  
+  if (buttonState3 == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin_3, LOW);
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin_3, HIGH);
+  }
+  
+  if (buttonState4 == HIGH) {
+    // turn LED on:
+    digitalWrite(ledPin_4, LOW);
+  } else {
+    // turn LED off:
+    digitalWrite(ledPin_4, HIGH);
+  }
+  
+  // measure the ping time in cm
+  cm = 0.01723 * readUltrasonicDistance(7, 7);
+  // convert to inches by dividing by 2.54
+  inches = (cm / 2.54);
+  Serial.print(inches);
+  Serial.print("in, ");
+  Serial.print(cm);
+  Serial.println("cm");
+  delay(100); // Wait for 100 millisecond(s)
+}

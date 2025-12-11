@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Browser AI Text Prediction</title>
+    <script src="https://cdn.jsdelivr.net/npm/brain.js@2.0.0/dist/brain.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-10">
+    <div class="max-w-md mx-auto bg-white p-8 rounded-lg shadow-lg">
+        <h1 class="text-2xl font-bold mb-4">AI Text Prediction</h1>
+        
+        <div class="mb-4">
+            <label class="block mb-2">Train the Model:</label>
+            <textarea id="trainingData" rows="4" 
+                class="w-full p-2 border rounded"
+                placeholder="Enter training sentences (one per line)"></textarea>
+            <button onclick="trainModel()" 
+                class="mt-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Train Model
+            </button>
+        </div>
+
+        <div class="mb-4">
+            <label class="block mb-2">Predict Next Word:</label>
+            <input type="text" id="inputSentence" 
+                class="w-full p-2 border rounded"
+                placeholder="Type a partial sentence">
+            <button onclick="predictNextWord()" 
+                class="mt-2 bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600">
+                Predict
+            </button>
+        </div>
+
+        <div id="result" class="mt-4 p-3 bg-gray-100 rounded"></div>
+    </div>
+
+    <script>
+        let net;
+
+        function preprocessData(text) {
+            // Convert text to lowercase and split into words
+            return text.toLowerCase().split(/\s+/);
+        }
+
+        function createTrainingData(sentences) {
+            const trainingData = [];
+            sentences.forEach(sentence => {
+                const words = preprocessData(sentence);
+                for (let i = 0; i < words.length - 1; i++) {
+                    trainingData.push({
+                        input: words[i],
+                        output: words[i + 1]
+                    });
+                }
+            });
+            return trainingData;
+        }
+
+        function trainModel() {
+            const trainingText = document.getElementById('trainingData').value;
+            const sentences = trainingText.split('\n').filter(s => s.trim() !== '');
+            
+            const trainingData = createTrainingData(sentences);
+
+            // Configure and train neural network
+            net = new brain.NeuralNetwork({
+                hiddenLayers: [10, 5]
+            });
+
+            net.train(trainingData, {
+                iterations: 2000,
+                log: (stats) => {
+                    console.log(`Training iteration: ${stats.iterations}`);
+                }
+            });
+
+            document.getElementById('result').innerHTML = 
+                `Model trained on ${trainingData.length} word sequences`;
+        }
+
+        function predictNextWord() {
+            if (!net) {
+                alert('Please train the model first!');
+                return;
+            }
+
+            const inputSentence = document.getElementById('inputSentence').value;
+            const lastWord = preprocessData(inputSentence).pop();
+
+            const prediction = net.run(lastWord);
+            
+            // Find word with highest output
+            const predictedWord = Object.keys(prediction)
+                .reduce((a, b) => prediction[a] > prediction[b] ? a : b);
+
+            document.getElementById('result').innerHTML = 
+                `Predicted Next Word: <strong>${predictedWord}</strong>`;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice to Sign Language</title>
+</head>
+<body>
+    <h1>Voice to Sign Language Converter</h1>
+    <button id="start-btn">Start Listening</button>
+    <div id="sign-language-output"></div>
+
+    <script>
+        const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.lang = 'en-US';
+
+        const signLanguageDictionary = {
+            "hello": "path/to/hello_sign.mp4",
+            "thank you": "path/to/thank_you_sign.mp4",
+            // Add more mappings
+        };
+
+        recognition.onresult = (event) => {
+            const transcript = event.results[0][0].transcript;
+            console.log('Recognized text:', transcript);
+            convertTextToSignLanguage(transcript);
+        };
+
+        document.getElementById('start-btn').addEventListener('click', () => {
+            recognition.start();
+        });
+
+        function convertTextToSignLanguage(text) {
+            const words = text.split(' ');
+            words.forEach(word => {
+                const signVideo = signLanguageDictionary[word.toLowerCase()];
+                if (signVideo) {
+                    playSignVideo(signVideo);
+                }
+            });
+        }
+
+        function playSignVideo(videoPath) {
+            const videoElement = document.createElement('video');
+            videoElement.src = videoPath;
+            videoElement.controls = true; // Optional: Add controls to the video
+            videoElement.play();
+            document.getElementById('sign-language-output').appendChild(videoElement);
+        }
+    </script>
+</body>
+</html>

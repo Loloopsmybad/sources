@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="upload-section">
+    <h2>Upload Student Marksheet</h2>
+    
+    {% if error %}
+    <div class="error-message">
+        {{ error }}
+    </div>
+    {% endif %}
+    
+    <form method="POST" enctype="multipart/form-data">
+        <div class="file-upload">
+            <input type="file" name="file" accept=".csv" required>
+            <button type="submit">Generate Report</button>
+        </div>
+    </form>
+    
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        <ul>
+            <li>Upload a CSV file with columns: Science, English, History, Maths</li>
+            <li>File must contain student performance data</li>
+            <li>Supported format: CSV file</li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Performance Analyzer</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8 text-blue-600">Student Performance Analyzer</h1>
+        
+        <div class="bg-white shadow-lg rounded-lg p-6">
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- File Upload Section -->
+                <div>
+                    <h2 class="text-2xl font-semibold mb-4">Upload Student Data</h2>
+                    <input type="file" id="csvFileInput" accept=".csv" 
+                           class="block w-full text-sm text-gray-500 
+                           file:mr-4 file:py-2 file:px-4
+                           file:rounded-full file:border-0
+                           file:text-sm file:font-semibold
+                           file:bg-blue-50 file:text-blue-700
+                           hover:file:bg-blue-100">
+                </div>
+
+                <!-- Performance Summary -->
+                <div id="performanceSummary" class="hidden">
+                    <h2 class="text-2xl font-semibold mb-4">Performance Summary</h2>
+                    <div id="summaryContent" class="space-y-2"></div>
+                </div>
+            </div>
+
+            <!-- Charts Section -->
+            <div class="mt-8 grid md:grid-cols-2 gap-6">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Subject Performance Distribution</h3>
+                    <canvas id="subjectBoxPlot"></canvas>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Marks Distribution</h3>
+                    <canvas id="subjectHistogram"></canvas>
+                </div>
+            </div>
+
+            <!-- Improvement Recommendations -->
+            <div id="improvementRecommendations" class="mt-8 hidden">
+                <h2 class="text-2xl font-semibold mb-4">Improvement Recommendations</h2>
+                <div id="recommendationContent" class="space-y-4"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('csvFileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            const reader = new FileReader();
+
+            reader.onload = function(event) {
+                const csvData = event.target.result;
+                processStudentData(csvData);
+            };
+
+            reader.readAsText(file);
+        });
+
+        function processStudentData(csvData) {
+            // Parse CSV data
+            const rows = csvData.split('\n').map(row => row.split(','));
+            const headers = rows[0];
+            const subjects = ['Science', 'English', 'History', 'Maths'];
+
+            // Extract subject data
+            const subjectData = {};
+            subjects.forEach(subject => {
+                const subjectIndex = headers.indexOf(subject);
+                subjectData[subject] = rows.slice(1).map(row => parseFloat(row[subjectIndex]));
+            });
+
+            // Performance Summary
+            displayPerformanceSummary(subjectData);
+
+            // Create Charts
+            createBoxPlot(subjectData);
+            createHistogram(subjectData);
+
+            // Improvement Recommendations
+            displayImprovementRecommendations(subjectData);
+        }
+
+        function displayPerformanceSummary(subjectData) {
+            const summaryContent = document.getElementById('summaryContent');
+            const performanceSummary = document.getElementById('performanceSummary');
+            summaryContent.innerHTML = '';
+            performanceSummary.classList.remove('hidden');
+
+            Object.entries(subjectData).forEach(([subject, marks]) => {
+                const mean = calculateMean(marks);
+                const median = calculateMedian(marks);
+                const stdDev = calculateStandardDeviation(marks);
+
+                const summaryItem = document.createElement('div');
+                summaryItem.classList.add('bg-blue-50', 'p-3', 'rounded');
+                summaryItem.innerHTML = `
+                    <h4 class="font-semibold text-blue-700">${subject}</h4>
+                    <p>Mean: ${mean.toFixed(2)}</p>
+                    <p>Median: ${median.toFixed(2)}</p>
+                    <p>Standard Deviation: ${stdDev.toFixed(2)}</p>
+                `;
+                summaryContent.appendChild(summaryItem);
+            });
+        }
+
+        function createBoxPlot(subjectData) {
+            const ctx = document.getElementById('subjectBoxPlot').getContext('2d');
+            new Chart(ctx, {
+                type: 'boxplot',
+                data: {
+                    labels: Object.keys(subjectData),
+                    datasets: [{
+                        label: 'Subject Marks Distribution',
+                        data: Object.values(subjectData),
+                        backgroundColor: ['rgba(75, 192, 192, 0.6)']
+                    }]
+                }
+            });
+        }
+
+        function createHistogram(subjectData) {
+            const ctx = document.getElementById('subjectHistogram').getContext('2d');
+            const datasets = Object.entries(subjectData).map(([subject, marks]) => ({
+                label: subject,
+                data: marks,
+                backgroundColor: getRandomColor()
+            }));
+
+            new Chart(ctx, {
+                type: 'histogram',
+                data: {
+                    labels: Object.keys(subjectData),
+                    datasets: datasets
+                },
+                options: {
+                    scales: {
+                        x: { title: { display: true, text: 'Marks' } },
+                        y: { title: { display: true, text: 'Frequency' } }
+                    }
+                }
+            });
+        }
+
+        function displayImprovementRecommendations(subjectData) {
+            const recommendationContent = document.getElementById('recommendationContent');
+            const improvementRecommendations = document.getElementById('improvementRecommendations');
+            recommendationContent.innerHTML = '';
+            improvementRecommendations.classList.remove('hidden');
+
+            Object.entries(subjectData).forEach(([subject, marks]) => {
+                const lowPerformers = marks.filter(m => m < 40).length / marks.length * 100;
+                const mediumPerformers = marks.filter(m => m >= 40 && m < 80).length / marks.length * 100;
+                const highPerformers = marks.filter(m => m >= 80).length / marks.length * 100;
+
+                const recommendationItem = document.createElement('div');
+                recommendationItem.classList.add('bg-green-50', 'p-4', 'rounded');
+                recommendationItem.innerHTML = `
+                    <h4 class="font-semibold text-green-700">${subject} Improvement Strategies</h4>
+                    <div class="mt-2">
+                        <p>Low Performers: ${lowPerformers.toFixed(2)}%</p>
+                        <p>Medium Performers: ${mediumPerformers.toFixed(2)}%</p>
+                        <p>High Performers: ${highPerformers.toFixed(2)}%</p>
+                    </div>
+                    <ul class="list-disc list-inside mt-2 text-green-600">
+                        ${lowPerformers > 30 ? `
+                            <li>Implement targeted remedial classes</li>
+                            <li>Develop personalized learning plans</li>
+                            <li>Provide additional study resources</li>
+                        ` : ''}
+                        ${mediumPerformers > 50 ? `
+                            <li>Conduct peer study groups</li>
+                            <li>Use interactive learning methods</li>
+                            <li>Provide practice tests</li>
+                        ` : ''}
+                    </ul>
+                `;
+                recommendationContent.appendChild(recommendationItem);
+            });
+        }
+
+        // Utility Functions
+        function calculateMean(data) {
+            return data.reduce((a, b) => a + b, 0) / data.length;
+        }
+
+        function calculateMedian(data) {
+            const sorted = [...data].sort((a, b) => a - b);
+            const middle = Math.floor(sorted.length / 2);
+            return sorted.length % 2 === 0 
+                ? (sorted[middle - 1] + sorted[middle]) / 2 
+                : sorted[middle];
+        }
+
+        function calculateStandardDeviation(data) {
+            const mean = calculateMean(data);
+            const variance = data.reduce((a, b) => a + Math.pow(b - mean, 2), 0) / data.length;
+            return Math.sqrt(variance);
+        }
+
+        function getRandomColor() {
+            return `rgba(${Math.random()*255},${Math.random()*255},${Math.random()*255},0.6)`;
+        }
+    </script>
+</body>
+</html>

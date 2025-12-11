@@ -1,0 +1,26 @@
+import cv2
+import mediapipe as mp
+import pyautogui
+
+mpHands = mp.solutions.hands
+hands = mpHands.Hands()
+cap = cv2.VideoCapture(0)
+
+while True:
+    success, img = cap.read()
+    imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+    results = hands.process(imgRGB)
+
+    if results.multi_hand_landmarks:
+        for handLms in results.multi_hand_landmarks:
+            for id, lm in enumerate(handLms.landmark):
+                h, w, c = img.shape
+                cx, cy = int(lm.x * 1920), int(lm.y * 1080)
+                if id == 8:
+                    pyautogui.moveTo(cx, cy)
+
+    cv2.imshow("Image", img)
+    if cv2.waitKey(10) & 0xFF == ord('q'):
+        break
+cap.release()
+cv2.destroyAllWindows()

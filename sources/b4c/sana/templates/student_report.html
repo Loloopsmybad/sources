@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="student-report-section">
+    <h2>Performance Report for {{ student_name }}</h2>
+    
+    <div class="student-performance">
+        <h3>Subject-wise Performance</h3>
+        <table>
+            <tr>
+                <th>Subject</th>
+                <th>Marks</th>
+            </tr>
+            {% for subject, marks in performance.items() %}
+            <tr>
+                <td>{{ subject }}</td>
+                <td>{{ marks }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    
+    <div class="performance-visualization">
+        <h3>Performance Pie Chart</h3>
+        <img src="data:image/png;base64,{{ pie_chart }}" alt="Student Performance Pie Chart">
+    </div>
+    
+    <div class="overall-performance-summary">
+        <h3>Overall Subject Performance Summary</h3>
+        {% for subject, stats in performance_summary.items() %}
+        <div class="subject-stats">
+            <h4>{{ subject }}</h4>
+            <table>
+                <tr>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Std Dev</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr>
+                    <td>{{ stats['Mean'] }}</td>
+                    <td>{{ stats['Median'] }}</td>
+                    <td>{{ stats['Std Dev'] }}</td>
+                    <td>{{ stats['Min'] }}</td>
+                    <td>{{ stats['Max'] }}</td>
+                </tr>
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="button">Analyze Another File</a>
+        <a href="{{ url_for('student_report') }}" class="button">Select Another Student</a>
+    </div>
+</div>
+{% endblock %}

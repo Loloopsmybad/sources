@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="report-section">
+    <h2>Performance Analysis Report</h2>
+    
+    <div class="performance-summary">
+        <h3>Subject Performance Summary</h3>
+        {% for subject, stats in performance_summary.items() %}
+        <div class="subject-stats">
+            <h4>{{ subject }}</h4>
+            <table>
+                <tr>
+                    <th>Mean</th>
+                    <th>Median</th>
+                    <th>Std Dev</th>
+                    <th>Min</th>
+                    <th>Max</th>
+                </tr>
+                <tr>
+                    <td>{{ stats['Mean'] }}</td>
+                    <td>{{ stats['Median'] }}</td>
+                    <td>{{ stats['Std Dev'] }}</td>
+                    <td>{{ stats['Min'] }}</td>
+                    <td>{{ stats['Max'] }}</td>
+                </tr>
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="improvement-areas">
+        <h3>Subject Improvement Recommendations</h3>
+        {% for subject, data in improvement_areas.items() %}
+        <div class="subject-improvement">
+            <h4>{{ subject }}</h4>
+            <div class="performance-breakdown">
+                <p>Low Performers: {{ data['Low Performers (%)'] }}%</p>
+                <p>Medium Performers: {{ data['Medium Performers (%)'] }}%</p>
+                <p>High Performers: {{ data['High Performers (%)'] }}%</p>
+            </div>
+            <div class="improvement-strategies">
+                <h5>Improvement Strategies:</h5>
+                <ul>
+                    {% for strategy in data['Improvement Strategies'] %}
+                    <li>{{ strategy }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    
+    <div class="visualizations">
+        <h3>Performance Visualizations</h3>
+        <div class="visualization-images">
+            <img src="{{ url_for('static', filename='subject_performance_boxplot.png') }}" alt="Subject Performance Boxplot">
+            <img src="{{ url_for('static', filename='subject_marks_distribution.png') }}" alt="Subject Marks Distribution">
+        </div>
+    </div>
+    
+    <div class="actions">
+        <a href="{{ url_for('index') }}" class="button">Analyze Another File</a>
+    </div>
+</div>
+{% endblock %}
