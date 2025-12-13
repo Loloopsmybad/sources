@@ -1,10 +1,14 @@
 #include <iostream>
 #include <string>
+
 using namespace std;
+
+
 string arra ;
 int ara[3]={1,2,34};
 string lst[10];
- 
+int i=0;
+string a;
 int main(){
     getline(cin,arra);
     cout<<"hi "<<arra<<" "<< arra.length()<<endl;
@@ -16,15 +20,28 @@ for (int i : ara){
     cout<< i;
 }
 cout<<endl;
-int i=0;
-while (i<5){
-    string a;
+
+
+
+while (true){
+    
     cin>>a;
-    lst[i]=a;
-    i++;
+
+    if (a == "END"){
+        i=-9007;
+        break;
+    }
+    else {
+        lst[i]=a;
+        i++;
+    }
 }
-for (string a: lst){
-cout<<a<<":::";}
+// int p = sizeof(lst)/sizeof(lst[0]);
+for (int i = 0; lst[i] != string("END"); i++) {
+    cout << lst[i] << ":::";
+}
+
+
 cout<<endl;
 system("pause");
 return 0;
