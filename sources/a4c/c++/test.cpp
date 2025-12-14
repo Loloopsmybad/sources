@@ -15,26 +15,33 @@ int main(){
     
     for (int i=0;i<=arra.length();i++){
         cout<<arra[arra.length()-i]<<endl;
+    
     }
 for (int i : ara){
     cout<< i;
-}
+
+    }
 cout<<endl;
 
 
 
 while (true){
-    
-    cin>>a;
+        
+    getline(cin,a);
 
     if (a == "END"){
-        i=-9007;
+        lst[i]=a;
         break;
     }
     else {
         lst[i]=a;
         i++;
     }
+}
+getline(cin,a);
+for (int i=0;i<a.length();i++){
+    char(a[i]);
+    cout<<toupper(a[i]);
 }
 // int p = sizeof(lst)/sizeof(lst[0]);
 for (int i = 0; lst[i] != string("END"); i++) {
