@@ -3,13 +3,14 @@ using namespace std;
 string a;
 int b;
 int choice;
+int c=0;
 class node{
 public:
     int value;
     node* Next;
 };
-node*ptrarr[1];
-
+//0-head,1-old,2-replace
+node*ptrarr[3];
 void linkedlist(node* address){
     while (address!=NULL){
         cout<<address<<":";
@@ -18,23 +19,43 @@ void linkedlist(node* address){
         address=address->Next;
     }
 }
-
 void add_ele(){
-    cout<<"node number?: ";
-    cin>>a;
-    cout<<endl;
     node* a=new node();
-    cout<<"waht will be the value?: ";
+    cout<<"what will be the value? of new node: ";
     cin>>b;
     cout<<endl;
     a->value=b;
-    a->Next=NULL;
-    linkedlist(a);
+    if (c==0){
+        ptrarr[0]=a;
+        c++;
+    }
+    else{
+        c=2;
+    }
+    ptrarr[1]=a;
+    
 }
 
 
 int main(){
-
+    
+    while (true)
+    {
+        add_ele();
+        if (c>=2){
+            ptrarr[2]->Next=ptrarr[1];
+        }
+        cout<<"do you want to add more element 1for yes 2 for no: ";
+        cin>>choice;
+        if (choice==1){
+            ptrarr[2]=ptrarr[1];
+        }
+        else{
+                ptrarr[1]->Next=NULL;
+                linkedlist(ptrarr[0]);
+                break;
+        }
+    }
     // node* head =new node();
     // node* second =new node();
     // node* third=new node();
@@ -45,31 +66,7 @@ int main(){
     // head->Next=second;
     // second->Next=third;
     // third->Next=NULL;
-    while (true)
-    {
-        cout<<"node number?: ";
-        cin>>a;
-        cout<<endl;
-        node* a=new node();
-        cout<<"what will be the value?: ";
-        cin>>b;
-        cout<<endl;
-        a->value=b;
-        a->Next=NULL;
-        cout<<"do you want to add more element 1for yes 2 for no: ";
-        cin>>choice;
-        if (choice==1){
-            continue;
-        }
-        else{
-                ptrarr[0]=a;
-                linkedlist(ptrarr[0]);
-                break;
-        }
-    }
-    
-    
-    
+
     // add_ele();
     // linkedlist(head);
 
