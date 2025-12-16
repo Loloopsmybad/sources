@@ -36,7 +36,6 @@ void add_ele(){
     
 }
 
-
 int main(){
     
     while (true)
