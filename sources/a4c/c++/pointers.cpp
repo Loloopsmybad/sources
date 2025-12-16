@@ -1,11 +1,15 @@
 #include <iostream>
 using namespace std;
 
-int main(int x) {
-  return 5 + x;
+int myfunc(int *x) {
+    cout<<*x;
+  return *x=5 + *x;
 }
 
-int myFunction() {
-  cout << main(3);
+int main() {
+  int a=4;
+  cout << myfunc(&a);
+  cout<<a;
+  system("pause");
   return 0;
 }
