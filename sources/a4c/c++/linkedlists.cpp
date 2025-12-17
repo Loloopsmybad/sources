@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-string a;
+
 int b;
 int choice;
 int c=0;
@@ -46,6 +46,7 @@ int main(){
         }
         cout<<"do you want to add more element 1for yes 2 for no: ";
         cin>>choice;
+        cout<<endl;
         if (choice==1){
             ptrarr[2]=ptrarr[1];
         }
