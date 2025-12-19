@@ -72,3 +72,9 @@ int main(){
 
     system("pause");
 }
+
+
+
+
+//pointer of a class is essentailly creating new objects of that class 
+//class_name *ptr_name[4]
