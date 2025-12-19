@@ -11,11 +11,10 @@ public:
 };
 //0-head,1-old,2-replace
 node*ptrarr[3];
+
 void linkedlist(node* address){
     while (address!=NULL){
-        cout<<address<<":";
-        cout<<address->Next<<":";
-        cout<<address->value<<endl;
+        cout<<address<<":"<< &address<<":"<<address->Next<<":"<<address->value<<endl;
         address=address->Next;
     }
 }
@@ -27,17 +26,15 @@ void add_ele(){
     a->value=b;
     if (c==0){
         ptrarr[0]=a;
+        // node**p=&a;
         c++;
     }
     else{
         c=2;
     }
     ptrarr[1]=a;
-    
 }
-
 int main(){
-    
     while (true)
     {
         add_ele();
@@ -52,29 +49,45 @@ int main(){
         }
         else{
                 ptrarr[1]->Next=NULL;
+                // *p->Next=NULL;
                 linkedlist(ptrarr[0]);
+                // linkedlist(p);
                 break;
         }
     }
-    // node* head =new node();
-    // node* second =new node();
-    // node* third=new node();
-    
-    // head->value=1;
-    // second->value=2;
-    // third->value=3;
-    // head->Next=second;
-    // second->Next=third;
-    // third->Next=NULL;
-
-    // add_ele();
-    // linkedlist(head);
-
     system("pause");
 }
-
-
-
-
 //pointer of a class is essentailly creating new objects of that class 
-//class_name *ptr_name[4]
+//class_name *ptr_name[4] so we just created 4 new objects of that class where each object is following the basic structure
+// #include <iostream>
+// using namespace std;
+
+// class Node {
+// public:
+//     int Value;
+//     Node* Next;
+// };
+// void printList(Node* n) {
+//     while (n!=NULL) {
+//         cout << n->Value << endl;
+//         n = n->Next;
+//     }
+// }
+
+// int main()
+// {
+//     Node* head = new Node();
+//     Node* second = new Node();
+//     Node* third = new Node();
+
+//     head->Value = 1;
+//     head->Next = second;
+//     second->Value = 2;
+//     second->Next = third;
+//     third->Value = 3;
+//     third->Next = NULL;
+    
+//     printList(head);
+
+//     system("pause>0");
+// }
