@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html style="filter: saturate(1.3); height: auto; min-height: 100%;">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keyword" content="DIAC">
+	<meta name="description" content="Delhi International Arbitration Center">
+	<title>DIAC - Dashboard</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+	<link rel="icon" type="image/png" sizes="96x96" href="https://diac.ind.in/public/custom/photos/logo.png">
+	
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<!-- AdminLTE Theme -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/css/AdminLTE.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/css/skins/_all-skins.min.css">
+
+	<!-- Google Font -->
+	<link rel="preconnect" href="https://fonts.googleapis.com/">
+	<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+	<style>
+		.bg-custom {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: white;
+		}
+		.small-box {
+			border-radius: 10px;
+			box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+		}
+		.small-box .icon {
+			top: 10px;
+			right: 10px;
+		}
+		.custom-box {
+			border-radius: 10px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+		}
+		.db-notificaiton-list {
+			list-style: none;
+			padding: 0;
+		}
+		.db-notificaiton-list li {
+			padding: 10px;
+			border-bottom: 1px solid #f0f0f0;
+		}
+		.db-notificaiton-list li:last-child {
+			border-bottom: none;
+		}
+	</style>
+
+	<!-- jQuery -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.18/js/adminlte.min.js"></script>
+</head>
+
+<body class="skin-blue fixed sidebar-mini sidebar-mini-expand-feature" style="height: auto; min-height: 100%;">
+
+	<div class="wrapper" style="height: auto; min-height: 100%;">
+		<header class="main-header">
+			<a href="#" class="logo">
+				<span class="logo-mini"><i class="fa fa-xing" aria-hidden="true"></i></span>
+				<span class="logo-lg" style="color: #fff"><b style="color: #fff">DIAC:</b>DELHI</span>
+			</a>
+
+			<nav class="navbar navbar-static-top">
+				<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+					<span class="sr-only">Toggle navigation</span>
+				</a>
+				<div class="navbar-custom-menu">
+					<ul class="nav navbar-nav">
+						<li>
+							<a href="#" title="Case Noting Notifications"><i class="fa fa-book"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-money"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-sticky-note-o"></i></a>
+						</li>
+						<li>
+							<a href="#"><i class="fa fa-clock-o"></i>
+								<span class="label label-primary">0</span>
+							</a>
+						</li>
+						<li class="dropdown notifications-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<i class="fa fa-bell-o"></i>
+								<span class="label label-warning">4</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li>
+									<ul class="menu">
+										<li>
+											<a href="#">
+												<i class="fa fa-info-circle text-aqua"></i>
+												A Fees of ₹100000 deposited by CONTINENTAL CARBON INDIA PRIVATE LIMITED
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-info-circle text-aqua"></i>
+												A Fees of ₹1124803 deposited by CONTINENTAL CARBON INDIA PRIVATE LIMITED
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-info-circle text-aqua"></i>
+												A Fees of ₹20000 deposited by BAANI HOSPITALITY SERVICES PVT. LTD.
+											</a>
+										</li>
+										<li>
+											<a href="#">
+												<i class="fa fa-info-circle text-aqua"></i>
+												A Fees of ₹186187 deposited by BAANI HOSPITALITY SERVICES PVT. LTD.
+											</a>
+										</li>
+									</ul>
+								</li>
+								<li class="footer"><a href="#"><strong>View all</strong></a></li>
+							</ul>
+						</li>
+						<li class="dropdown user user-menu">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+								<img src="https://via.placeholder.com/160x160/667eea/ffffff?text=User" class="user-image" alt="User Image">
+								<span class="hidden-xs">Ms. Saumya</span>
+							</a>
+							<ul class="dropdown-menu">
+								<li class="user-header">
+									<img src="https://via.placeholder.com/160x160/667eea/ffffff?text=User" class="img-circle" alt="User Image">
+									<p>
+										Ms. Saumya
+										<small>Deputy Counsel</small>
+									</p>
+								</li>
+								<li class="user-footer">
+									<div class="pull-left">
+										<a href="#" class="btn btn-warning"><i class="fa fa-user-o"></i> My Account</a>
+									</div>
+									<div class="pull-right">
+										<a href="#" class="btn btn-danger"><i class="fa fa-power-off"></i> Log out</a>
+									</div>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Sidebar -->
+		<aside class="main-sidebar">
+			<section class="sidebar">
+				<div class="user-panel">
+					<div class="pull-left image">
+						<img src="https://via.placeholder.com/160x160/667eea/ffffff?text=User" class="img-circle" alt="User Image">
+					</div>
+					<div class="pull-left info sm-online-box">
+						<p class="sm-online-dn">Ms. Saumya</p>
+						<a href="#" class="sm-online-icon">
+							<i class="fa fa-circle text-success"></i> (DC13)
+						</a>
+					</div>
+				</div>
+
+				<ul class="sidebar-menu tree" data-widget="tree">
+					<li class="active">
+						<a href="#">
+							<i class="fa fa-dashboard"></i>&nbsp;&nbsp;<span>Dashboard</span>
+						</a>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-book"></i>&nbsp;&nbsp;<span>Case Management</span>
+							<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i class="fa fa-check"></i>&nbsp;&nbsp;Alloted Case</a></li>
+							<li><a href="#"><i class="fa fa-pencil"></i>&nbsp;&nbsp;Status of Pleadings</a></li>
+							<li><a href="#"><i class="fa fa-random"></i>&nbsp;&nbsp;Tag Cases</a></li>
+							<li><a href="#"><i class="fa fa-file-text-o"></i>&nbsp;&nbsp;Draft Letters</a></li>
+							<li><a href="#"><i class="fa fa-users"></i>&nbsp;&nbsp;Claimant &amp; Respondant</a></li>
+							<li><a href="#"><i class="fa fa-retweet"></i>&nbsp;&nbsp;Counsels</a></li>
+							<li><a href="#"><i class="fa fa-sticky-note-o"></i>&nbsp;&nbsp;Arbitral Tribunal</a></li>
+							<li><a href="#"><i class="fa fa-money"></i>&nbsp;&nbsp;Fee Pending Cases</a></li>
+							<li><a href="#"><i class="fa fa-book"></i>&nbsp;&nbsp;Case Order</a></li>
+							<li><a href="#"><i class="fa fa-money"></i>&nbsp;&nbsp;Case Fee</a></li>
+							<li><a href="#"><i class="fa fa-trophy"></i>&nbsp;&nbsp;Termination</a></li>
+							<li><a href="#"><i class="fa fa-bars"></i>&nbsp;&nbsp;Cause List</a></li>
+							<li><a href="#"><i class="fa fa-pencil-square-o"></i>&nbsp;&nbsp;Noting</a></li>
+							<li><a href="#"><i class="fa fa-bookmark-o"></i>&nbsp;&nbsp;All Cases</a></li>
+						</ul>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-address-book-o"></i>&nbsp;&nbsp;<span>Rooms Availability</span>
+							<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i class="fa fa-map-o"></i>&nbsp;&nbsp;Hearings Today</a></li>
+						</ul>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-sticky-note-o"></i>&nbsp;&nbsp;<span>Work Status</span>
+							<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i class="fa fa-circle-o"></i>&nbsp;&nbsp;Pending</a></li>
+							<li><a href="#"><i class="fa fa-circle-o"></i>&nbsp;&nbsp;Completed</a></li>
+						</ul>
+					</li>
+					<li class="treeview">
+						<a href="#">
+							<i class="fa fa-list"></i>&nbsp;&nbsp;<span>Master Setup</span>
+							<span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+						</a>
+						<ul class="treeview-menu">
+							<li><a href="#"><i class="fa fa-circle"></i>&nbsp;&nbsp;Arbitrator Setup</a></li>
+							<li><a href="#"><i class="fa fa-circle"></i>&nbsp;&nbsp;Counsel Setup</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-user-circle"></i>&nbsp;&nbsp;<span>eFiling Users</span>
+						</a>
+					</li>
+					<li>
+						<a href="#">
+							<i class="fa fa-file"></i>&nbsp;&nbsp;<span>Reports</span>
+						</a>
+					</li>
+				</ul>
+			</section>
+		</aside>
+
+		<!-- Content -->
+		<div class="content-wrapper" style="min-height: 645px;">
+			<section class="content-header">
+				<h1>
+					Dashboard
+					<small>Control panel</small>
+				</h1>
+				<ol class="breadcrumb">
+					<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li class="active">Dashboard</li>
+				</ol>
+			</section>
+
+			<section class="content">
+				<div class="row mb-15">
+					<div class="col-lg-8 col-xs-12">
+						<div class="row">
+							<div class="col-md-4 col-sm-6 col-12">
+								<div class="small-box bg-custom">
+									<div class="inner">
+										<h3>599</h3>
+										<p>Alloted Cases Count</p>
+									</div>
+									<div class="icon">
+										<i class="fa fa-bank"></i>
+									</div>
+									<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-6 col-12">
+								<div class="small-box bg-custom">
+									<div class="inner">
+										<h3>11996</h3>
+										<p>Registered Cases</p>
+									</div>
+									<div class="icon">
+										<i class="fa fa-book"></i>
+									</div>
+									<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-6 col-12">
+								<div class="small-box bg-custom">
+									<div class="inner">
+										<h3>8</h3>
+										<p>Today's Hearing</p>
+									</div>
+									<div class="icon">
+										<i class="fa fa-bank"></i>
+									</div>
+									<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-6 col-12">
+								<div class="small-box bg-custom">
+									<div class="inner">
+										<h3>2</h3>
+										<p>Pending Work Count</p>
+									</div>
+									<div class="icon">
+										<i class="fa fa-sticky-note-o"></i>
+									</div>
+									<a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+								</div>
+							</div>
+
+							<div class="col-md-4 col-sm-6 col-12">
+								<div class="small-box bg-custom">
+									<div class="inner">
+										<h3>19</h3>
+										<p>Total Rooms</p>
+									</div>
+									<div class="icon">
+										<i class="fa fa-building"></i>
+									</div>
+									<span style="height: 26px;" class="small-box-footer"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="col-lg-4 col-xs-12">
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="box box-warning custom-box dashboard-box">
+									<div class="box-header with-border">
+										<h3 class="box-title"><i class="fa fa-bell-o"></i> Latest Notifications</h3>
+										<div class="box-tools pull-right">
+											<button type="button" class="btn btn-box-tool" data-widget="collapse">
+												<i class="fa fa-plus"></i>
+											</button>
+										</div>
+									</div>
+									<div class="box-body">
+										<ul class="db-notificaiton-list">
+											<li>
+												<a href="#">
+													<i class="fa fa-info-circle text-aqua"></i>
+													A Fees of ₹100000 deposited by CONTINENTAL CARBON INDIA PRIVATE LIMITED for case number 11088
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fa fa-info-circle text-aqua"></i>
+													A Fees of ₹1124803 deposited by CONTINENTAL CARBON INDIA PRIVATE LIMITED for case number 11088
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fa fa-info-circle text-aqua"></i>
+													A Fees of ₹20000 deposited by BAANI HOSPITALITY SERVICES PVT. LTD. for case number 10687
+												</a>
+											</li>
+											<li>
+												<a href="#">
+													<i class="fa fa-info-circle text-aqua"></i>
+													A Fees of ₹186187 deposited by BAANI HOSPITALITY SERVICES PVT. LTD. for case number 10687
+												</a>
+											</li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<footer class="main-footer text-center">
+			<strong>Copyright © DIAC 2025 <span>All rights reserved; Delhi International Arbitration Center.</span></strong>
+		</footer>
+	</div>
+
+	<script>
+		$(document).ready(function() {
+			// Initialize sidebar toggle
+			$('.sidebar-toggle').on('click', function() {
+				$('body').toggleClass('sidebar-collapse');
+			});
+
+			// Prevent default link behavior for demo
+			$('a[href="#"]').on('click', function(e) {
+				e.preventDefault();
+			});
+		});
+	</script>
+</body>
+</html>

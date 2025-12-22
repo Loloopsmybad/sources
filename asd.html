@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello, World!</title>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+
+    <form id="loginForm">
+        <div class="wrap-input100 validate-input" data-validate="Enter User Id">
+            <input class="input100" type="text" name="txtUsername" id="txtUsername" placeholder="User Id" autocomplete="off">
+            <span class="focus-input100" data-placeholder=""></span>
+        </div>
+
+        <div class="wrap-input100 validate-input" data-validate="Enter password">
+            <input class="input100" type="password" name="txtPassword" id="txtPassword" placeholder="Password" autocomplete="off">
+            <span class="focus-input100" data-placeholder=""></span>
+        </div>
+
+        <button class="login-btn">Login</button>
+    </form>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            var txtUsername = document.getElementById('txtUsername').value;
+            var txtPassword = document.getElementById('txtPassword').value;
+
+            if (txtUsername === '123' && txtPassword === '123') {
+                alert('Login successful!');
+                window.location.href = './welcome.html'; // Redirect to welcome page
+            } else {
+                alert('Invalid username or password.');
+            }
+        });
+    </script>
+</body>
+</html>
