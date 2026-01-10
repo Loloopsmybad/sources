@@ -43,8 +43,9 @@ return 0;
 // method 2 using 2 array
 
 
-#include<stdio.h>
+// #include<stdio.h>
 // #include<stdlib.h>
+
 
 
 // int main(){

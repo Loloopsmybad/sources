@@ -8,7 +8,7 @@ struct NODE {
 
 void linkedlist(struct NODE* address) {
     while (address != NULL) {
-        printf("%d\n", address->value);
+        printf("%d\n", address->value);//same as (*address).value
         address = address->next;
     }
 }
