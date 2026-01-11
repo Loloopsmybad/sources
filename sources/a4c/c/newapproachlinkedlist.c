@@ -1,21 +1,20 @@
 #include <stdlib.h>
 #include<stdio.h>
 
+// lesson learned
 
-struct NODE{ 
+// for doubly linked list or
+//forr merging two linked lists 
+// u require address to next node prev node  and value that u want to store
+
+struct ListNode {
     int val;
-    struct NODE *next;
+    struct ListNode *next
 };
 
+struct ListNode* mergeTwoLists(struct ListNode* list1, struct ListNode* list2) {
+    if (list1 == NULL) return list2;
+    if (list2 == NULL) return list1;
 
-int main(){
-
-    struct NODE *head = (struct NODE *)malloc(sizeof(struct NODE));
-
-    head->val=1;
-    head->next=NULL;
-    printf("%d",head->val);
-    system("pause");
-
-
+ 
 }
