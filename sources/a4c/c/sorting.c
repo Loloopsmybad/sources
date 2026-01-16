@@ -1,15 +1,40 @@
 #include<stdio.h>
 #include<stdlib.h>
+int key=0;
+int arr[10];
+int size = 10;
 
-int main(){
-int arr[]={2,4,6,33,7,8,12};
-int a = sizeof(arr)/sizeof(arr[0]);
-for (int i =0; i<a;i++){
-
+void insort(int arr[10],int size){
+    // int size = sizeof(arr)/sizeof(arr[0]); 
+    int j=0;
+    for (int i=1 ; i<size;i++){
+        key = arr[i];
+        j=i-1;
+        while(j>=0 && arr[j]>key){
+            arr[j+1]=arr[j];
+            j--;
+        }
+        arr[j+1]=key;
+    }
+    printf("\n");
+    for(int k = 0; k<10;k++){
+        printf("%d ",arr[k]);
+    }
+    
 
 }
 
+int main(){
+    
+    for(int p=0; p<10;p++){
+        scanf("%d", &arr[p]);
+    }
+    printf("\n");
+    for(int k = 0; k<10;k++){
+        printf("%d,",arr[k]);
+    }
+    insort(arr,size);
+    system("pause");
+    return 0;
 
-system("pause");
-return 0;
 }
