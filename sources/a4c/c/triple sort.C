@@ -66,16 +66,8 @@ for(int l=t;l<=right;k++){
     move++;
 }
 // this part for moving left over elements from temp arry to main arry
-while(i<(f_l+s_l)){
-arr[move]=temp[i];
-i++;
-}
-while(j<t_l){
-arr[move]=s_arr[i];
-j++;
-}
-
-
+while(i<(f_l+s_l)){arr[move]=temp[i];i++;}
+while(j<t_l){arr[move]=s_arr[i];j++;}
 
 }
 
@@ -113,9 +105,6 @@ mergesort(arr ,mid1,mid2);
 mergesort(arr ,mid2+1,right);
 merge(arr,mid1,mid2,left,right);
 }
-// 12 3456 78
-//123 456 789
-
 int main(){
     int n;
     printf("length of the array ?");
@@ -125,7 +114,7 @@ int main(){
         printf("\n value ?");
         scanf("%d",&arr[b]);
     }
-    printf("")
+    printf("\n");
     printf("\nthe input array is \n");
     for (int b =0;b<n;b++){
         printf("value -> %d", arr[b]);// printing the array
