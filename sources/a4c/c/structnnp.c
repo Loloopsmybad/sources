@@ -8,7 +8,7 @@ typedef struct{
 
 int main(){
     int n=0;
-    printf("number of sensors ???? yo bitch");
+    printf("number of sensors ???? ");
     scanf("%d",&n);
     sensor *s1=(sensor*)malloc(n*sizeof(sensor));
     for(int j=1;j<=n;j++){
