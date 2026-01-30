@@ -1,25 +1,29 @@
+
 #include<stdio.h>
 #include<stdlib.h>
 
 void selectionsort(int *arr, int *size){
     int i=0,j=0;
-    int temp;
+    int temp=arr[0];
+    int temp_val;
+    int temp_index;
     printf("______%d______",(*size));
     while (i<=(*size)-1){
-        // printf("no i: %d j: %d size: %d",i,j,(*size));
-        if (arr[j]<arr[i]){
-            // printf("nigga \n");
-            temp=arr[i];
-            arr[i]=arr[j];
-            arr[j]=temp;
+        
+        if (arr[j]<=temp){
+            temp=arr[j];
+            temp_index=j;
             j++;
         }else{
             j++;
         }
         if (j==(*size)){
-            // printf("hi");
+            temp_val=arr[i];
+            arr[i]=temp;
+            arr[temp_index]=temp_val;
             i++;
             j=i;    
+            temp=arr[i];
         }
     }
 }
