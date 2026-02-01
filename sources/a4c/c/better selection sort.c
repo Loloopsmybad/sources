@@ -11,7 +11,7 @@ void selectionsort(int *arr, int *size){
     while (i<=(*size)-1){
         
         if (arr[j]<=temp){
-            temp=arr[j];
+            temp=arr[j]; 
             temp_index=j;
             j++;
         }else{

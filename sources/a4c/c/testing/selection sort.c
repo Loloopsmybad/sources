@@ -9,6 +9,7 @@ void selectionsort(int *arr, int *size){
     int temp_index;
     printf("\n");
     printf("______%d______",(*size));
+    printf("\n");
     while (i<(*size)){
         
         if (arr[j]>=temp){//just change the sign for reversing 
