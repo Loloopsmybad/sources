@@ -2,19 +2,19 @@
 #include <stdlib.h>
 
 int divide(int *a,int s,int e){
-    int x = a[s];
-    int index=s;
-    int temp=0;
-    for (int i =s+1;i<=e;i++){
-        if(a[i]<=x){
-            index++;
+    int x = a[e];
+    int index=e;
+    int temp;
+    for (int i =(e-1);i>=s;i--){
+        if(a[i]>=x){
+            index--;
             temp=a[index];
             a[index]=a[i];
             a[i]=temp;
         }
     }
-    temp=a[s];
-    a[s]=a[index];
+    temp=a[e];
+    a[e]=a[index];
     a[index]=temp;
     return index;
 }
