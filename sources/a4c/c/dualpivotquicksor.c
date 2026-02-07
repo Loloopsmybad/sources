@@ -1,51 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-// void divide(int a[], int low, int high, int *p, int *q)
-// {
-//     if (a[low] > a[high]) {
-//         int t = a[low];
-//         a[low] = a[high];
-//         a[high] = t;
-//     }
-
-//     int pivot1 = a[low];
-//     int pivot2 = a[high];
-
-//     int i = low + 1;
-//     int lt = low + 1;
-//     int gt = high - 1;
-
-//     while (i <= gt) {
-//         if (a[i] < pivot1) {
-//             int t = a[i];
-//             a[i] = a[lt];
-//             a[lt] = t;
-//             lt++;
-//         }
-//         else if (a[i] > pivot2) {
-//             int t = a[i];
-//             a[i] = a[gt];
-//             a[gt] = t;
-//             gt--;
-//             i--;   // re-check swapped element
-//         }
-//         i++;
-//     }
-
-//     lt--;
-//     gt++;
-
-//     int t = a[low];
-//     a[low] = a[lt];
-//     a[lt] = t;
-
-//     t = a[high];
-//     a[high] = a[gt];
-//     a[gt] = t;
-
-//     *p = lt;
-//     *q = gt;
-// }
 
 void divide(int *a,int s,int e,int *fst, int *snd){
     int x = a[e];
@@ -59,7 +13,7 @@ void divide(int *a,int s,int e,int *fst, int *snd){
             temp=a[index];
             a[index]=a[i];
             a[i]=temp;
-        }  else if (a[i]<=x){
+        }  else if (a[i]<=x){ 
             b_index++;
             temp=a[b_index];
             a[b_index]=a[i];
