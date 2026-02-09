@@ -1,11 +1,7 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-void parallelsearch(int *a1,int *a2,int x){
-    int s1=sizeof(a1)/sizeof(a1[0]);
-    int s2=sizeof(a2)/sizeof(a2[0]);
-    printf("%d",s1);
-    printf("%d",s2);
+void parallelsearch(int *a1,int *a2,int x,int s1,int s2){
     for (int i=0;i<s1;i++){
         for (int j=0;j<s2;j++){
             if( a1[i]+a2[j]==x){
@@ -16,7 +12,6 @@ void parallelsearch(int *a1,int *a2,int x){
 }
 
 int main(){
-
     int n1;
     int n2;
     int x;
@@ -34,7 +29,7 @@ int main(){
         printf("number ?");
         scanf("%d",&a2[j]);
     }
-    printf("\n");
+    printf("\n =================arrayyyy==================\n");
     for (int j =0;j<n1;j++){
         printf("%d ", a1[j]);
     }
@@ -42,11 +37,15 @@ int main(){
     for (int j =0;j<n2;j++){
         printf("%d ", a2[j]);
     }
+    int s1=sizeof(a1)/sizeof(a1[0]);
+    int s2=sizeof(a2)/sizeof(a2[0]);
+    printf("\n%d\n",s1);
+    printf("%d\n",s2);
     printf("\n");  
     printf("number u want to find pair for ?");
     scanf("%d",&x);
     printf("\n");  
-    parallelsearch(a1,a2,x);
+    parallelsearch(a1,a2,x,s1,s2);
     system("pause");
     return 0;
 }
