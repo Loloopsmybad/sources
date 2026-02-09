@@ -1,0 +1,1 @@
+my program creates a linkedlist to store all the data it creates n number of memory struct after taking user input using malloc and then creates an array where all the temp values are stored and then checks the largest value and then prints all the linked list data using head address.

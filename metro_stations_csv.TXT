@@ -1,0 +1,104 @@
+MARGENTA,Botanical Garden,Okhla Bird Sanctuary,YES,2,00:00:20
+MARGENTA,Okhla Bird Sanctuary,Kalindi Kunj,NO,2,00:00:20
+MARGENTA,Kalindi Kunj,Jasola Vihar Shaheen Bagh,NO,2,00:00:20
+MARGENTA,Jasola Vihar Shaheen Bagh,Okhla Vihar,NO,2,00:00:20
+MARGENTA,Okhla Vihar,Jamia Millia Islamia,NO,2,00:00:20
+MARGENTA,Jamia Millia Islamia,Sukhdev Vihar,NO,2,00:00:20
+MARGENTA,Sukhdev Vihar,Okhla NSIC,NO,2,00:00:20
+MARGENTA,Okhla NSIC,Kalkaji Mandir,NO,2,00:00:20
+MARGENTA,Kalkaji Mandir,Nehru Enclave,YES,2,00:00:20
+MARGENTA,Nehru Enclave,Greater Kailash,NO,2,00:00:20
+MARGENTA,Greater Kailash,Chirag Delhi,NO,2,00:00:20
+MARGENTA,Chirag Delhi,Panchsheel Park,NO,2,00:00:20
+MARGENTA,Panchsheel Park,Hauz Khas,NO,2,00:00:20
+MARGENTA,Hauz Khas,IIT,NO,2,00:00:20
+MARGENTA,IIT,R.K.Puram,NO,2,00:00:20
+MARGENTA,R.K.Puram,Munirka,NO,2,00:00:20
+MARGENTA,Munirka,Vasant Vihar,NO,2,00:00:20
+MARGENTA,Vasant Vihar,Shankar Vihar,NO,2,00:00:20
+MARGENTA,Shankar Vihar,Terminal 1-IGI Airport,NO,2,00:00:20
+MARGENTA,Terminal 1-IGI Airport,Sadar Bazar Cantonment,NO,2,00:00:20
+MARGENTA,Sadar Bazar Cantonment,Palam,NO,2,00:00:20
+MARGENTA,Palam,Dashrathpuri,NO,2,00:00:20
+MARGENTA,Dashrathpuri,Dabri Mor - Janakpuri South,NO,2,00:00:20
+MARGENTA,Dabri Mor - Janakpuri South,Janakpuri West,NO,2,00:00:20
+MARGENTA,Janakpuri West,,YES,2,00:00:20
+BLUE,Noida Electronic City,Noida Sector 62,NO,2,00:00:20
+BLUE,Noida Sector 62,Noida Sector 59,NO,2,00:00:20
+BLUE,Noida Sector 59,Noida Sector 61,NO,2,00:00:20
+BLUE,Noida Sector 61,Noida Sector 52,NO,2,00:00:20
+BLUE,Noida Sector 52,Noida Sector 34,NO,2,00:00:20
+BLUE,Noida Sector 34,Noida City Centre,NO,2,00:00:20
+BLUE,Noida City Centre,Golf Course,NO,2,00:00:20
+BLUE,Golf Course,Botanical Garden,NO,2,00:00:20
+BLUE,Botanical Garden,Noida Sector 18,NO,2,00:00:20
+BLUE,Noida Sector 18,Noida Sector 16,NO,2,00:00:20
+BLUE,Noida Sector 16,Noida Sector 15,NO,2,00:00:20
+BLUE,Noida Sector 15,New Ashok Nagar,NO,2,00:00:20
+BLUE,New Ashok Nagar,Mayur Vihar Extension,NO,2,00:00:20
+BLUE,Mayur Vihar Extension,Mayur Vihar Phase-1,NO,2,00:00:20
+BLUE,Mayur Vihar Phase-1,,NO,2,00:00:20
+BLUE,Akshardham,Yamuna Bank,NO,2,00:00:20
+BLUE,Vaishali,Kaushambi,YES,2,00:00:20
+BLUE,Kaushambi,Anand Vihar,NO,2,00:00:20
+BLUE,Anand Vihar,Karkarduma,NO,2,00:00:20
+BLUE,Karkarduma,Preet Vihar,NO,2,00:00:20
+BLUE,Preet Vihar,Nirman Vihar,NO,2,00:00:20
+BLUE,Nirman Vihar,Lakshmi Nagar,NO,2,00:00:20
+BLUE,Lakshmi Nagar,Yamuna Bank,NO,2,00:00:20
+BLUE,Yamuna Bank,,,,00:00:20
+BLUE,Noida Electronic City,Noida Sector 62,NO,2,00:00:20
+BLUE,Noida Sector 62,Noida Sector 59,NO,2,00:00:20
+BLUE,Noida Sector 59,Noida Sector 61,NO,2,00:00:20
+BLUE,Noida Sector 61,Noida Sector 52,NO,2,00:00:20
+BLUE,Noida Sector 52,Noida Sector 34,NO,2,00:00:20
+BLUE,Noida Sector 34,Noida City Centre,NO,2,00:00:20
+BLUE,Noida City Centre,Golf Course,NO,2,00:00:20
+BLUE,Golf Course,Botanical Garden,NO,2,00:00:20
+BLUE,Botanical Garden,Noida Sector 18,NO,2,00:00:20
+BLUE,Noida Sector 18,Noida Sector 16,NO,2,00:00:20
+BLUE,Noida Sector 16,Noida Sector 15,NO,2,00:00:20
+BLUE,Noida Sector 15,New Ashok Nagar,NO,2,00:00:20
+BLUE,New Ashok Nagar,Mayur Vihar Extension,NO,2,00:00:20
+BLUE,Mayur Vihar Extension,Mayur Vihar Phase-1,NO,2,00:00:20
+BLUE,Mayur Vihar Phase-1,Akshardham,NO,2,00:00:20
+BLUE,Akshardham,Yamuna Bank,NO,2,00:00:20
+BLUE,Yamuna Bank,Indraprastha,YES,2,00:00:20
+BLUE,Indraprastha,Supreme Court,NO,2,00:00:20
+BLUE,Supreme Court,Mandi House,NO,2,00:00:20
+BLUE,Mandi House,Barakhamba Road,NO,2,00:00:20
+BLUE,Barakhamba Road,Rajiv Chowk,NO,2,00:00:20
+BLUE,Rajiv Chowk,Ramakrishna Ashram Marg,NO,2,00:00:20
+BLUE,Ramakrishna Ashram Marg,Jhandewalan,NO,2,00:00:20
+BLUE,Jhandewalan,Karol Bagh,NO,2,00:00:20
+BLUE,Karol Bagh,Rajendra Place,NO,2,00:00:20
+BLUE,Rajendra Place,Patel Nagar,NO,2,00:00:20
+BLUE,Patel Nagar,Shadipur,NO,2,00:00:20
+BLUE,Shadipur,Kirti Nagar,NO,2,00:00:20
+BLUE,Kirti Nagar,Moti Nagar,NO,2,00:00:20
+BLUE,Moti Nagar,Ramesh Nagar,NO,2,00:00:20
+BLUE,Ramesh Nagar,Rajouri Garden,NO,2,00:00:20
+BLUE,Rajouri Garden,Tagore Garden,NO,2,00:00:20
+BLUE,Tagore Garden,Subhash Nagar,NO,2,00:00:20
+BLUE,Subhash Nagar,Tilak Nagar,NO,2,00:00:20
+BLUE,Tilak Nagar,Janakpuri East,NO,2,00:00:20
+BLUE,Janakpuri East,Janakpuri West,NO,2,00:00:20
+BLUE,Janakpuri West,Uttam Nagar East,YES,2,00:00:20
+BLUE,Uttam Nagar East,Uttam Nagar West,NO,2,00:00:20
+BLUE,Uttam Nagar West,Nawada,NO,2,00:00:20
+BLUE,Nawada,Dwarka Mor,NO,2,00:00:20
+BLUE,Dwarka Mor,Dwarka,NO,2,00:00:20
+BLUE,Dwarka,Dwarka Sector 14,NO,2,00:00:20
+BLUE,Dwarka Sector 14,Dwarka Sector 13,NO,2,00:00:20
+BLUE,Dwarka Sector 13,Dwarka Sector 12,NO,2,00:00:20
+BLUE,Dwarka Sector 12,Dwarka Sector 11,NO,2,00:00:20
+BLUE,Dwarka Sector 11,Dwarka Sector 10,NO,2,00:00:20
+BLUE,Dwarka Sector 10,Dwarka Sector 9,NO,2,00:00:20
+BLUE,Dwarka Sector 9,Dwarka Sector 8,NO,2,00:00:20
+BLUE,Dwarka Sector 8,Dwarka Sector 21,NO,2,00:00:20
+BLUE,Dwarka Sector 21,,NO,2,00:00:20
+GRAY,Dwarka,Interchange,YES,2,00:00:20
+GRAY,Interchange,Nangli,NO,2,00:00:20
+GRAY,Nangli,Najafgarh,NO,2,00:00:20
+GRAY,Najafgarh,Dhansa Bus Stand,NO,2,00:00:20
+GRAY,Dhansa Bus Stand,,NO,2,00:00:20

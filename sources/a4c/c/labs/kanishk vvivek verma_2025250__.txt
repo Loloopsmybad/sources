@@ -1,0 +1,16 @@
+look at the incode coments for further details 
+
+merg sort function
+the program breaks the input array in the 3 parts and then does ruccursion on each sub part
+
+
+merge function
+
+the programs creates 4 array for first second and third array and also a temp array
+and add the left over elements int the temp array
+
+it first sorts and merges first and second array and places them in temp array
+
+then does the sorting on temp and third array
+then consecutively add the left over elements form the temp and third array to the main
+
