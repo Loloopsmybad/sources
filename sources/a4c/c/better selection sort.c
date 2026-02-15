@@ -39,6 +39,9 @@ int main(){
         printf("number ? ");
         scanf("%d",&arr[i]);
     }
+
+
+    
     printf("\n");
     for(int i=0;i<n;i++){
         printf("%d ",arr[i]);
