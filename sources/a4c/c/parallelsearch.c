@@ -3,7 +3,7 @@
 
 
 
-int binarysearch(int*a2,int n,int req){
+int binarysearch(int*a2,int n,int req){// this is finding req number in 2nd array
     int left = 0;
     int right = n - 1;
     while(left <= right) {
@@ -24,7 +24,7 @@ int binarysearch(int*a2,int n,int req){
 
 void search(int *a1, int * a2, int n, int x) {
     for (int i = 0; i < n; i++) {
-        int required = x - a1[i];
+        int required = x - a1[i];//this is the number we are searching in the 2nd array
         int right_ptr = binarysearch(a2, n, required);
         if (right_ptr != 0){
             printf(" pair is { %d + %d } = %d \n", a1[i],a2[right_ptr],x);

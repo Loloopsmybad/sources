@@ -1,0 +1,46 @@
+#insertion sort
+key idea: 
+on array of size n run one loop and run a 2nd 
+loop with its index just behind the main loop
+and then keep check if the value at that positionis 
+smaller or greater than the main loop index value 
+and btw keep the value in the main loop as "key"
+keep checking the key value with the 2nd loop value
+and then just keep doing i--; of 2nd loop till you reach 0 or -1 figure it out
+....
+
+
+
+
+#mergesort
+key idea:we keep dividing the
+array into 2 eqaul parts
+
+for the merge part make 2 array
+one of length mid-start
+another
+end-(mid+1)
+
+then use while loop to check each element for which is smaller
+
+and dont forget to carry the left over elements
+
+
+
+
+#quicksort
+the key idea is to put everything greater than the pivot to the right 
+and everything less than the pivot to the left
+
+and dont forgget to maintain an index integer that you will return at the end of a function
+
+
+and also dont forget to swap the pivot position
+just befor the function call ends
+
+
+
+
+#stacks
+remember for stacks use the correct
+underflown or overflown condition
