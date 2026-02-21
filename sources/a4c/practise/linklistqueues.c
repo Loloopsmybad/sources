@@ -8,6 +8,7 @@ typedef struct node{
     node *prev;
 }node;
 node *temp;
+node *temp2;
 node*head;
 node *tail;
 int t=0;
@@ -30,13 +31,32 @@ void add(int i){
         tail=trs;
         trs->next=NULL;
     }
+    
 
+}
+void reverse(){
+    temp2=head;
+while(temp2!=NULL){
+
+    temp=temp2->prev;
+    temp2->prev=temp2->next;
+    temp2->next=temp;
+    temp2=temp2->prev;
+}
+if(temp != NULL){
+        head = temp->prev;
+    }
+
+while(temp2!=NULL){
+        printf("%d ",temp2->val);
+        temp2=temp2->next;
+    }
 }
 
 void print(){
-    while(tail!=NULL){
-        printf("%d ",tail->val);
-        tail=tail->prev;
+    while(head!=NULL){
+        printf("%d ",head->val);
+        head=head->next;
     }
 }
 
@@ -44,7 +64,10 @@ int main(){
 for(int i =0;i<6;i++){
 add(i);
 }
+
 print();
+reverse();
+
 
 system("pause");
 return 0;
