@@ -34,24 +34,22 @@ void add(int i){
     
 
 }
-void reverse(){
-    temp2=head;
-while(temp2!=NULL){
-
-    temp=temp2->prev;
-    temp2->prev=temp2->next;
-    temp2->next=temp;
-    temp2=temp2->prev;
-}
-if(temp != NULL){
-        head = temp->prev;
-    }
-
-while(temp2!=NULL){
-        printf("%d ",temp2->val);
-        temp2=temp2->next;
-    }
-}
+// void reverse(){
+//     temp2=head;
+// while(temp2!=NULL){
+//     temp=temp2->prev;
+//     temp2->prev=temp2->next;
+//     temp2->next=temp;
+//     temp2=temp2->prev;
+// }
+// if(temp != NULL){
+//         head = temp->prev;
+//     }
+// while(temp2!=NULL){
+//         printf("%d ",temp2->val);
+//         temp2=temp2->next;
+//     }
+// }
 
 void print(){
     while(head!=NULL){
@@ -66,7 +64,7 @@ add(i);
 }
 
 print();
-reverse();
+// reverse();
 
 
 system("pause");
