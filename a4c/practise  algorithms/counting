@@ -1,0 +1,10 @@
+counting sort algo 
+you get array
+
+find the greatest number 
+
+create an index array list with size being that of the greatest element 
+
+then do cmf (commulative freq)
+
+then create an output array with size that of original array
