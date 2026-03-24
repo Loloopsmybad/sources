@@ -14,8 +14,8 @@ void countingsort(int arr[],int size){
         if (arr[i] < min) min = arr[i];
     }
     x++;
-    // int index[x];
-    int range = x - min + 1;  // x is your max
+    
+    int range = x - min + 1;
     int index[range];
     int output[size];
 
