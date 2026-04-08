@@ -1,133 +1,265 @@
-#include<stdio.h>
 #include<stdlib.h>
-
-
+#include<stdio.h>
 
 typedef struct tree{
-    struct tree* p;
-    struct tree* root;
-    struct tree* right_node;
     int key;
-    struct tree* left_node;
-} tree;
+    int height;
+    struct tree *root;
+    struct tree *p;
+    struct tree *left;
+    struct tree *right;
+}tree;
 
 
+int height(tree* n) {
+    if (n == NULL){
+        return 0;
+    }
+    else{
+        return n->height;
+    }
+    
+}
 
-void insert_tree(tree* bst, tree* z){
-    tree * y =NULL;
-    tree * x =bst->root;
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+void update_height(tree* n) {
+    if (n != NULL)
+        n->height = 1 + max(height(n->left), height(n->right));
+}
+
+// Balance factor: left height - right height
+// AVL rule: this must stay between -1 and +1
+int get_balance(tree* n) {
+    return (n == NULL) ? 0 : height(n->left) - height(n->right);
+}
+
+tree* rotate_right(tree* bst_wrapper, tree* y) {
+    tree* x = y->left;
+    tree* B = x->right;
+
+    // Perform rotation
+    x->right = y;
+    y->left = B;
+
+    // Fix parent pointers
+    x->p = y->p;
+    y->p = x;
+    if (B != NULL) {
+        B->p = y;
+    }
+
+    // Fix parent's child pointer
+    if (x->p == NULL)
+        bst_wrapper->root = x;
+    else if (x->p->left == y)
+        x->p->left = x;
+    else
+        x->p->right = x;
+
+    // Update heights (y first since it's now lower)
+    update_height(y);
+    update_height(x);
+
+    return x;
+}
+
+tree* rotate_left(tree* bst_wrapper, tree* x) {
+    tree* y = x->right;
+    tree* B = y->left;
+
+    // Perform rotation
+    y->left = x;
+    x->right = B;
+
+    // Fix parent pointers
+    y->p = x->p;
+    x->p = y;
+    if (B != NULL){
+         B->p = x;
+    }
+    
+    // Fix parent's child pointer
+    if (y->p == NULL)
+        bst_wrapper->root = y;
+    else if (y->p->left == x)
+        y->p->left = y;
+    else
+        y->p->right = y;
+
+    // Update heights
+    update_height(x);
+    update_height(y);
+
+    return y;
+}
+void rebalance(tree* bst, tree* n) {
+    while (n != NULL) {
+        update_height(n);
+        int bal = get_balance(n);
+
+        // Left heavy
+        if (bal > 1) {
+            if (get_balance(n->left) < 0)
+                rotate_left(bst, n->left);   // Left-Right case
+            rotate_right(bst, n);
+        }
+        // Right heavy
+        else if (bal < -1) {
+            if (get_balance(n->right) > 0)
+                rotate_right(bst, n->right); // Right-Left case
+            rotate_left(bst, n);
+        }
+
+        n = n->p; // walk up to root
+    }
+}
+
+void insert_tree(tree*bst , tree*z){
+    tree* y=NULL;
+    tree *x=bst->root;
     while(x!=NULL){
         y=x;
-        if (z->key<x->key){
-            x=x->left_node;
-        }else{
-            x=x->right_node;
+        if(z->key<x->key){
+            x=x->left;
+        }
+        else{
+            x=x->right;
         }
     }
     z->p=y;
-    if (y==NULL){
+    if(y==NULL){
         bst->root=z;
-    }else if(z->key<y->key){
-        y->left_node=z;
+    }
+    else if(z->key<y->key){
+        y->left=z;
     }else{
-        y->right_node=z;
+        y->right=z;
     }
 }
 
-void insert(tree* bst ,int v){
+
+void insert(tree*bst,int v){
     tree* n=(tree*)malloc(sizeof(tree));
     n->key=v;
-    n->left_node = NULL;    
-    n->right_node = NULL;   
-    n->p = NULL;           
-    n->root = NULL;  
-    insert_tree(bst,n); 
+    n->left=NULL;
+    n->right=NULL;
+    n->p=NULL;
+    n->root=NULL;
+    insert_tree(bst,n);
+    rebalance(bst, n);
 }
 
-tree* minimum(tree * x){
-    while(x->left_node!= NULL){
-        x=x->left_node;
-    }
-    printf("%d",x->key);
-    return x;
-}
 
-tree* maximum(tree*x){
-    while(x->right_node!= NULL){
-        x=x->right_node;
-    }
-    printf("%d",x->key);
-    return x;
-
-}
-
-tree* search(tree *x,int k){
-    if (x == NULL || k==x->key){
-        return x;
-    }
-    if (k<x->key){
-        return search(x->left_node,k);
-    }else{
-        return search(x->right_node,k);
-    }
-}
-
-void delete(){
-
-
-
-}
-
-void transplant(){
-
-
-
-}
-
-tree* successor(tree*x){
-    if(x->right_node!=NULL){
-        return minimum(x->right_node);
-    }
-    tree * y= x->p;
-    while ( y!=NULL && x==y->right_node){
-        x=y;
-        y=y->p;
-    }
-    printf("%d",y);
-    return y;
-}
-void walk(tree * bst){
+void walk(tree* bst){
     if (bst!=NULL){
-        walk(bst->left_node);
+        walk(bst->left);
         printf("%d : ",bst->key);
-        walk(bst->right_node);
+        walk(bst->right);
+    }
+
+}
+
+
+tree* search(tree* bst,int k){
+    if (bst==NULL|| k==bst->key){
+        return bst;
+    }
+    if (k<bst->key){
+        return search(bst->left,k);
+    }else{
+        return search(bst->right,k);
+    }
+
+}
+
+
+void transplant(tree*bst,tree *u, tree *v){
+    if(u->p==NULL){
+        bst->root=v;
+    }
+    else if(u==u->p->left){
+        u->p->left=v;
+    }else{
+        u->p->right=v;
+    }
+    if (v!=NULL){
+        v->p=u->p;
     }
 }
 
 
+tree* minimum(tree* bst){
+    while(bst->left!=NULL){
+        bst=bst->left;
+    }
+    return bst;
+
+}
+
+
+void delete(tree* bst, tree * z, tree** rebalance_start){
+    if (z->left==NULL){
+        transplant(bst,z,z->right);
+    }
+    else if(z->right==NULL){
+        transplant(bst,z,z->left);
+    }
+    else{
+        tree * y=minimum(z->right);
+        *rebalance_start = y->p;
+        if (y->p!=z){
+            transplant(bst,y,y->right);
+            y->right=z->right;
+            y->right->p=y;
+        }else{
+            *rebalance_start = y;
+        }
+         transplant(bst,z,y);
+        y->left=z->left;
+        y->left->p=y;
+    }
+}
+
+
+void find_and_delete(tree*bst,int x){
+    tree* temp=search(bst->root,x);
+
+    //talk about this 
+    if (temp != NULL) {
+        tree* parent = temp->p; 
+        tree* rebalance_start = NULL;
+        delete(bst, temp,&rebalance_start);
+        rebalance(bst,rebalance_start);
+    } else {
+        printf("Key %d not found\n", x);
+    }
+}
 
 
 int main(){
-    tree* bst=(tree *)malloc(sizeof(tree));
-    bst->root = NULL;
-    bst->left_node=NULL;
-    bst->right_node=NULL;
+    tree * bst=(tree*)malloc(sizeof(tree));
+    bst->left=NULL;
+    bst->right=NULL;
     bst->p=NULL;
-    
-    insert(bst,10);
-    insert(bst,5);
-    insert(bst,1);
-    insert(bst,4);
-    insert(bst,34);
+    bst->root=NULL;
+
+
+    printf("testcase1");
+    insert(bst,50);
+    insert(bst,30);
+    insert(bst,70);
+    insert(bst,60);
+    insert(bst,80);
     walk(bst->root);
     printf("\n");
-    minimum(bst->root);
-    printf("\n");
-    maximum(bst->root);
-    printf("\n");
-    successor(bst->root);
-    printf("\n");
+    find_and_delete(bst,30);
+    walk(bst->root);
+
     
+
     system("pause");
     return 0;
 }

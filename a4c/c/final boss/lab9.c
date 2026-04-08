@@ -111,7 +111,7 @@ void find_and_delete(tree*bst,int x){
 }
 
 int main(){
-    tree * bst=(tree*)malloc(sizeof(malloc));
+    tree * bst=(tree*)malloc(sizeof(tree));
 
     bst->left=NULL;
     bst->right=NULL;

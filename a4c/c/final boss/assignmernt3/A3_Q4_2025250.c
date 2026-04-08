@@ -76,6 +76,43 @@ void walk(tree * bst){
 
 
 
+tree* search(tree* bst,int k){
+    if (bst==NULL|| k==bst->key){
+        return bst;
+    }
+    if (k<bst->key){
+        return search(bst->left,k);
+    }else{
+        return search(bst->right,k);
+    }
+}
+
+void predecessor(tree*x){
+    if(x->left!=NULL){
+        x=x->left;
+        while(x->right!= NULL){
+            x=x->right;
+        }
+        printf("successor is : %d \n",x->key);
+        return;
+    }
+    tree * y= x->p;
+    
+    while ( y!=NULL && x==y->left){
+        x=y;
+        y=y->p;
+    }
+    if (y!=NULL){
+            printf("successor is : %d \n",y->key);
+        }
+    else{
+        printf("NULL \n");
+    }
+    }
+void find_and_search(tree* bst,int num){
+    tree*num_ptr=search(bst,num);
+    predecessor(num_ptr);
+}
 
 int main(){
     tree* bst=(tree *)malloc(sizeof(tree));
@@ -83,17 +120,24 @@ int main(){
     bst->left  = NULL;
     bst->right = NULL;
     bst->p     = NULL;
-
     
-    insert(bst,10);
-    insert(bst,5);
-    insert(bst,1);
+    insert(bst,15);
+    insert(bst,6);
+    insert(bst,18);
+    insert(bst,3);
+    insert(bst,7);
+    insert(bst,17);
+    insert(bst,20);
+    insert(bst,2);
     insert(bst,4);
-    insert(bst,34);
-
+    insert(bst,13);
     walk(bst);
     printf("\n");
-  
+    find_and_search(bst->root,20);
+    find_and_search(bst->root,17);
+    find_and_search(bst->root,13);
+    find_and_search(bst->root,2);
+    
     system("pause");
     return 0;
 }
