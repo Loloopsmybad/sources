@@ -45,7 +45,7 @@ int main() {
     int n1_a[]={10,3,5,7,2,8};
 
     int n2=5;
-    int n2_a[]={4,1,3,2,16};
+    int n2_a[]={4,1,3,16,45};
 
     // int arr[n];
     // for (int i = 0; i < n; i++)

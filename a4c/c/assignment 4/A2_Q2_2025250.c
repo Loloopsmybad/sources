@@ -59,7 +59,6 @@ void display() {
     printf("Final Table:\n");
     for (int i = 0; i < m; i++) {
         printf("%d:",i);
-
         for (int j = 0; j < chainsize[i]; j++) {
             printf(" %d", array[i][j]);
             if (j < chainsize[i] - 1){
